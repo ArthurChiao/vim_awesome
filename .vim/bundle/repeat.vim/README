@@ -1,0 +1,19 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2136
+
+If you've ever tried using the "." command after a plugin map, you were likely disappointed to discover it only repeated the last native command inside that map, rather than the map as a whole.  That disappointment ends today.  Repeat.vim remaps "." in a way that plugins can tap into it.
+
+Support is already present in the following plugins:
+
+surround.vim (vimscript #1697)
+speeddating.vim (vimscript #2120)
+abolish.vim (vimscript #1545)
+unimpaired.vim (vimscript #1590)
+commentary.vim (vimscript #3695)
+
+Adding support to a plugin is generally as simple as the following command at the end of your map functions.
+
+  silent! call repeat#set("\<Plug>MyWonderfulMap",v:count)
+
+Details are at the top of the file.  Let me know if you add support to a script on vim.org and I will link it here.
+
+http://github.com/tpope/vim-repeat

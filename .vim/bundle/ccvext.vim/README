@@ -1,0 +1,47 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2943
+
+This is a new version from JumpInCode.vim I don't know why i can't upload a new version to the old JumpInCode page (http://www.vim.org/scripts/script.php?script_id=2770)? So I start this branch
+
+ctags and cscope plugin for vim, more convenice way to use ctags and cscope in vim
+
+Command:
+\sy   Generate tags and cscope database from current directory
+\sc   Configure window (Take care of the help info the window below)
+
+Sample_1:
+    :e your_source_.h
+    :cd %:p:h
+    \sy
+    <Enter>
+    :EnQuickSnippet
+    :CscopeCtagsMenu
+
+Sample_2:
+    :cd d:\
+    \sc
+    <Select your database and input enter>
+    :EnQuickSnippet
+    :CscopeCtagsMenu
+
+
+Suggestion:
+    1. <Leader>sy is default script command, if it conflict with your other script you can change it at line 753 of script.
+    2. <Leader>sy is default script command, if it conflict with your other script you can change it at line 754 of script.
+    3. Command CscopeCtagsMenu, EnQuickSnippet, DiQuickSnippet are not mapped, for convenient way is map it to your own command in your .vimrc or _vimrc file.
+    4. If your are using gvim on window, CscopeCtagsMenu is pretty help to view source code.
+    5. This script is better work with script: taglist ( http://www.vim.org/scripts/script.php?script_id=273 )
+    6. This script is better work with script: MRU  ( http://www.vim.org/scripts/script.php?script_id=273 )
+    7. This script is better work with script: Mark  ( http://www.vim.org/scripts/script.php?script_id=1238 )
+    8. This script is better work with script: NERDTree ( http://www.vim.org/scripts/script.php?script_id=1658 )
+
+Update (4.0.0)
+    1. Fix some bug in the old script, and add some new function in gvim.
+    2. Add command EnQuickSnippet and DiquickSnippet. This is a better way to use ctags, Now vim is working pretty like sourceinside, specially on windows givm.
+
+Tips:
+    1. CscopeCtagsMenu command maybe not wok on linux or cygwin terminal, this is for windows gvim.
+    2. Friends help docs is not finished yet. If you have any problem with script or any suggestion, please click here http://groups.google.com/group/ccvext?msg=new&lnk=gcis or email me thatway.c@gmail.com
+
+Requirement:
+    ctags and cscope. And windows user can download them from http://code.google.com/p/easy-vim/downloads/list
+

@@ -1,0 +1,15 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=234
+
+This C syntax file is to help developing portable Standard C code.  That is C code that has to be able to compile on many different compilers.  The default is to highlight C89 C code, but it can be configured to allow or flag as an error C94 and C99 language features (types, constants, etc.)
+
+Additional non-standard C features can be allowed - C++ comments, GNU C keywords, $ in identitfiers for VMS C, etc.
+
+The syntax file also has the following benefits:
+
+o more language elements highlighted (e.g. function and identifier names)
+o more syntax errors highlighted, and
+o better highlighting of macros.
+
+Details of all configuration options are documented in the supplied help file.
+
+More detail can be found at http://www.eandem.co.uk/mrw/vim/syntax/index.html#ansic
