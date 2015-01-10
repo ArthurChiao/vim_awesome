@@ -35,5 +35,19 @@ set textwidth=78
 set formatoptions+=Mm
 set colorcolumn=80
 
-"set echofunc path
-"call pathogen#incubate("after")
+" support chinese characters
+set fileencodings=utf-8,ucs-bom,shift-jis,latin1,big5,gb18030,bgk,gb231,cp926
+set fileencoding=utf-8
+set encoding=utf-8
+set termencoding=gbk
+
+if has("win32")
+set gfn=Monaco:h10:cANSI
+set gfw=NSimsun:h12
+
+" fix GVIM "ctags not error" on windows
+let Tlist_Ctags_Cmd='c:\vim\vim74\ctags.exe'
+
+" change GUI font and size
+set guifont=Courier_New:h10:cANSI
+endif
