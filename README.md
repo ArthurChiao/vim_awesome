@@ -33,3 +33,6 @@ If none of the solutions in the above link fits your case, just remove the
 rm .vim_runtime/sources_forked/neocomplete.vim -rf
 ```
 restart the vim.
+
+# Cheat sheet
+[cheat sheet](cheat-sheets/)
