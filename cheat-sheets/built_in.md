@@ -22,6 +22,41 @@ za (one more 'za' will fold it again)
 zi
 ```
 
+## Insert/Add
+
+basic commands:
+
+| Command  |  Function |
+| :-------- |  :--------- |
+| i    | insert at current cursor  |
+| I    | insert before first non-blank character of current line  |
+| a    | (append) insert after current character |
+| A    | (append) insert at the end of this line |
+| o    | insert new line below this line |
+| O    | insert new line uppper this line |
+
+some advanced insertions, e.g, insert same context at same position of
+multiple lines with help of `block selection`:
+
+| Command  |  Function |
+| :-------- |  :--------- |
+| `ctl + v`  `I`   | `ctl + v` (block selection), `I` (insert before selected block)   |
+
+## Substitute/Replace
+
+Difference between `substitute` and `replace` is that `substitute` enters
+`edit mode` from `command mode`, while `replace` stays in `command mode`.
+
+| Command  |  Function |
+| :-------- |  :--------- |
+| s    | substitute current character (with one or more characters) |
+| S    | substitute current line |
+| r    | replace current character |
+| R    | replace remaining of current line (start from cursor position) |
+| R    | a |
+| R    | a |
+| R    | a |
+
 ## search/find
 1. search in text
 
