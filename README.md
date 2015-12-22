@@ -34,5 +34,15 @@ rm .vim_runtime/sources_forked/neocomplete.vim -rf
 ```
 restart the vim.
 
+Or, you can use `neocomplcache`, an alternative to `neocomplete`. Enable this
+plugin by open the flag in `.vimrc`:
+
+```shell
+" enable neocomplcache
+" this is an alternative word-completion plugin if you can not use
+" neocomplete, which needs lua enabled
+let g:neocomplcache_enable_at_startup = 1 # enable this flag
+```
+
 # Cheat sheet
 [cheat sheet](cheat-sheets/)

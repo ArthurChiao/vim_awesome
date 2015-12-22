@@ -10,10 +10,10 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry
 
-" chinease support
-set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
-set termencoding=utf-8
-set encoding=utf-8
+" enable neocomplcache
+" this is an alternative word-completion plugin if you can not use
+" neocomplete, which needs lua enabled
+" let g:neocomplcache_enable_at_startup = 1
 
 " close scratch preview (window for python code-completion) after finish
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
