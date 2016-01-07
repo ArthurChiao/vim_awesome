@@ -35,7 +35,7 @@ rm .vim_runtime/sources_forked/neocomplete.vim -rf
 restart the vim.
 
 Or, you can use `neocomplcache`, an alternative to `neocomplete`. Enable this
-plugin by open the flag in `.vimrc`:
+plugin by opening the flag in `.vimrc`:
 
 ```shell
 " enable neocomplcache

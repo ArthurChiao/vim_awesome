@@ -142,10 +142,10 @@ set formatoptions+=Mm
 set colorcolumn=80
 
 " support chinese characters
-set fileencodings=utf-8,ucs-bom,shift-jis,latin1,big5,gb18030,bgk,gb231,cp926
-set fileencoding=utf-8
-set encoding=utf-8
-set termencoding=gbk
+" set fileencodings=utf-8,ucs-bom,shift-jis,latin1,big5,gb18030,bgk,gb231,cp926
+" set fileencoding=utf-8
+" set encoding=utf-8
+" set termencoding=gbk
 
 if has("win32")
 set gfn=Monaco:h10:cANSI
