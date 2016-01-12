@@ -1,6 +1,22 @@
 built-in commands
 =====================
 
+**contents:**
+
+1. [save changes with root priviledge](#save_changes_with_root_priviledge)
+1. [code folding](#code_folding)
+1. [Insert/Add](#Insert_Add)
+1. [Substitute/Replace](#Substitute_Replace)
+1. [Search/Find](#Search_Find)
+1. [Cursor movement](#Cursor_movement)
+1. [Delete](#Delete)
+1. [Copy/Paste](#Copy_Paste)
+1. [Undo/Redo](#Undo_Redo)
+1. [some commands in Nerdtree](#some_cmd_in_NTree)
+
+
+<a id="save_changes_with_root_priviledge"></a>
+
 ## save changes with root priviledge
 
 This command is useful when you change a file and are saving it, but are
@@ -8,6 +24,8 @@ warned that you have no priviledge to modify it.
 ```shell
 :w !sudo tee %
 ```
+
+<a id="code_folding"></a>
 
 ## code folding (代码折叠）
 
@@ -21,6 +39,8 @@ za (one more 'za' will fold it again)
 # unfold all
 zi
 ```
+
+<a id="Insert_Add"></a>
 
 ## Insert/Add
 
@@ -42,6 +62,8 @@ multiple lines with help of `block selection`:
 | :-------- |  :--------- |
 | `ctl + v`  `I`   | `ctl + v` (block selection), `I` (insert before selected block)   |
 
+<a id="Substitute_Replace"></a>
+
 ## Substitute/Replace
 
 Difference between `substitute` and `replace` is that `substitute` enters
@@ -53,14 +75,20 @@ Difference between `substitute` and `replace` is that `substitute` enters
 | S    | substitute current line |
 | r    | replace current character |
 | R    | replace remaining of current line (start from cursor position) |
-| R    | a |
-| R    | a |
-| R    | a |
+| :s/old/new/    | substitute 'new' for the first matching 'old'(on the current line) |
+| :s/old/new/g    | substitute 'new' for the all matching 'old' (on the current line) |
+| :%s/old/new/    | substitute 'new' for the first matching 'old' (all lines) |
+| :%s/old/new/g    | substitute 'new' for the all matching 'old' (all lines) |
+| :%s/old/new/gc     | substitute 'new' for the all matching 'old' (all lines and need confirm for each substitution) |
 
-## search/find
+(:point_right: recommand `:%s/old/new/gc`)
+
+<a id="Search_Find"></a>
+
+## Search/Find
 1. search in text
 
-  search all the occurrances of workd `session`, the effects is similar as
+  search all the occurrances of word `session`, the effects is similar as
   linux command `grep`:
 
   ```shell
@@ -69,3 +97,79 @@ Difference between `substitute` and `replace` is that `substitute` enters
 
   :copen # open the window that lists all the search results
   ```
+
+<a id="Cursor_movement"></a>
+
+## Cursor movement
+
+| Command  |  Function |
+| :------- | :-------- |
+| h   | move left |
+| j   | move down |
+| k   | move up |
+| l   | move right |
+| w :+1:   | jump by start of words(punctuation considered words) |
+| W   | jump by words (spaces separate words) |
+| e   | jump by end of words |
+| E   | jump by end of words (spaces separate words) |
+| b :+1:  | jump backward by words  |
+| B   | jump backward by words (spaces separate words) |
+| 0  :+1: | move to start of line |
+| $   :+1:| move to end of line |
+| ^   | move to the first non-blank character of line |
+| gg  | move to start of file |
+| G   | move to end of file |
+
+<a id="Delete"></a>
+
+## Delete
+
+| Command  |  Function |
+| :------- | :-------- |
+| x   | delete current character |
+| X   | delete character before cursor|
+| dw   | delete current word |
+| dd   | delete current line |
+| D   | delete from current character to end of line (= d$)|
+| dk  | delete current and lastrow|
+| dj  | delete the current and next line |
+| ddp  | exchange the current and next line |
+| kdgg   | delete all lines before current line |
+| jdG  | delete all lines after current line |
+| J   | join line below to the current line |
+
+<a id="Copy_Paste"></a>
+
+## Copy/Paste
+
+| Command  |  Function |
+| :------- | :-------- |
+| Y   | copy current line |
+| yw   | copy word | 
+| y$   | copy from corsor to end of line |
+| p    | paste after line |
+| P   | paste before current line|
+ 
+<a id="Undo_Redo"></a>
+
+## Undo/Redo
+
+| Command | Function |
+| :------ | :-------- |
+| u  |  Undo |
+| U  | Undo for current line |
+| Ctrl + r | redo |
+
+<a id="some_cmd_in_NTree"></a>
+
+## some commands in NERDTree
+| Command | Function |
+| :------ | :-------- |
+| m  |  open the manu |
+| s  | open a file in split format |
+| t  | open a file in new tab |
+| gt | jump between tabs |
+| R  | refresh |
+| CD | come back the first vim path |
+| cd | change to new path |
+
