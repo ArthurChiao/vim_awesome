@@ -131,11 +131,13 @@ Difference between `substitute` and `replace` is that `substitute` enters
 | dw   | delete current word |
 | dd   | delete current line |
 | D   | delete from current character to end of line (= d$)|
-| dk  | delete current and lastrow|
+| dk  | delete current and last row|
 | dj  | delete the current and next line |
 | ddp  | exchange the current and next line |
 | kdgg   | delete all lines before current line |
 | jdG  | delete all lines after current line |
+| dgg   | delete all lines before current line, including current line |
+| dG  | delete all lines after current line, including current line |
 | J   | join line below to the current line |
 
 <a id="Copy_Paste"></a>
