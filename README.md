@@ -5,14 +5,17 @@ my vim configuration, based on amix's project (https://github.com/amix/vimrc).
 
 # install
 ```shell
+# backup your old configuration files
+cd ~
+mkdir vimback
+mv .vim* vimback
+
 # clone configuration files
-git clone https://github.com/ArthurChiao/vim_awesome.git
+git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
 
 # move files to home directory
 cd vim_awesome
-mv .vimrc ~/.
-mv .vim ~/.
-mv .vim_runtime ~/.
+mv .vim* ~
 
 # install
 cd ~/.vim_runtime
