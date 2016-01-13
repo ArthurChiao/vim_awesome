@@ -1,7 +1,7 @@
 built-in commands
 =====================
 
-**contents:**
+<a id='top'>**contents:**</a>
 
 1. [save changes with root priviledge](#save_changes_with_root_priviledge)
 1. [code folding](#code_folding)
@@ -17,7 +17,7 @@ built-in commands
 
 <a id="save_changes_with_root_priviledge"></a>
 
-## save changes with root priviledge
+##[[↑]](#top) save changes with root priviledge
 
 This command is useful when you change a file and are saving it, but are
 warned that you have no priviledge to modify it.
@@ -27,7 +27,7 @@ warned that you have no priviledge to modify it.
 
 <a id="code_folding"></a>
 
-## code folding (代码折叠）
+##[[↑]](#top) code folding (代码折叠）
 
 ```shell
 # set folding by indent:
@@ -42,7 +42,7 @@ zi
 
 <a id="Insert_Add"></a>
 
-## Insert/Add
+##[[↑]](#top) Insert/Add
 
 basic commands:
 
@@ -64,7 +64,7 @@ multiple lines with help of `block selection`:
 
 <a id="Substitute_Replace"></a>
 
-## Substitute/Replace
+##[[↑]](#top) Substitute/Replace
 
 Difference between `substitute` and `replace` is that `substitute` enters
 `edit mode` from `command mode`, while `replace` stays in `command mode`.
@@ -85,7 +85,7 @@ Difference between `substitute` and `replace` is that `substitute` enters
 
 <a id="Search_Find"></a>
 
-## Search/Find
+##[[↑]](#top) Search/Find
 1. search in text
 
   search all the occurrances of word `session`, the effects is similar as
@@ -100,7 +100,7 @@ Difference between `substitute` and `replace` is that `substitute` enters
 
 <a id="Cursor_movement"></a>
 
-## Cursor movement
+##[[↑]](#top) Cursor movement
 
 | Command  |  Function |
 | :------- | :-------- |
@@ -122,7 +122,7 @@ Difference between `substitute` and `replace` is that `substitute` enters
 
 <a id="Delete"></a>
 
-## Delete
+##[[↑]](#top) Delete
 
 | Command  |  Function |
 | :------- | :-------- |
@@ -142,7 +142,7 @@ Difference between `substitute` and `replace` is that `substitute` enters
 
 <a id="Copy_Paste"></a>
 
-## Copy/Paste
+##[[↑]](#top) Copy/Paste
 
 | Command  |  Function |
 | :------- | :-------- |
@@ -154,7 +154,7 @@ Difference between `substitute` and `replace` is that `substitute` enters
  
 <a id="Undo_Redo"></a>
 
-## Undo/Redo
+##[[↑]](#top) Undo/Redo
 
 | Command | Function |
 | :------ | :-------- |
@@ -164,7 +164,7 @@ Difference between `substitute` and `replace` is that `substitute` enters
 
 <a id="some_cmd_in_NTree"></a>
 
-## some commands in NERDTree
+##[[↑]](#top) some commands in NERDTree
 | Command | Function |
 | :------ | :-------- |
 | m  |  open the manu |
