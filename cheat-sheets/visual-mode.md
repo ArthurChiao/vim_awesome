@@ -30,4 +30,3 @@ visual mode commands
 | `I`  |  insert at head of the selected blocks (with `ctl + v`) |
 
 
-### others

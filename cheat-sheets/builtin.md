@@ -3,8 +3,8 @@ built-in commands
 
 <a id='top'>**contents:**</a>
 
-1. [save changes with root priviledge](#save_changes_with_root_priviledge)
-1. [code folding](#code_folding)
+1. [Save/Quit](#save_quit)
+1. [Code Folding](#code_folding)
 1. [Insert/Add](#Insert_Add)
 1. [Substitute/Replace](#Substitute_Replace)
 1. [Search/Find](#Search_Find)
@@ -12,17 +12,30 @@ built-in commands
 1. [Delete](#Delete)
 1. [Copy/Paste](#Copy_Paste)
 1. [Undo/Redo](#Undo_Redo)
-1. [some commands in Nerdtree](#some_cmd_in_NTree)
 
 
-<a id="save_changes_with_root_priviledge"></a>
+<a id="save_quit"></a>
+##[[↑]](#top) save, quit/close files
 
-##[[↑]](#top) save changes with root priviledge
+| Command  |  Function |
+| :-------- |  :--------- |
+| :w   | save |
+| :w!   | force to save |
+| :w <filename> | save as another file |
+| :r <filename> | read text from file, append content after cursor |
+| :q   | quit |
+| :q!   | force to quit |
+| :qa   | quit all windows/tabs/panels |
+| :wqa   | save and quit all files |
+| ZZ | save then quit current file |
 
 This command is useful when you change a file and are saving it, but are
 warned that you have no priviledge to modify it.
 ```shell
 :w !sudo tee %
+
+# the alias in current configuration is W
+:W        # same as `:w !sudo tee %`
 ```
 
 <a id="code_folding"></a>
@@ -75,6 +88,7 @@ Difference between `substitute` and `replace` is that `substitute` enters
 | S    | substitute current line |
 | r    | replace current character |
 | R    | replace remaining of current line (start from cursor position) |
+| C    | change remaining of current line (same as `Da`) |
 | :s/old/new/    | substitute 'new' for the first matching 'old'(on the current line) |
 | :s/old/new/g    | substitute 'new' for the all matching 'old' (on the current line) |
 | :%s/old/new/    | substitute 'new' for the first matching 'old' (all lines) |
@@ -131,13 +145,13 @@ Difference between `substitute` and `replace` is that `substitute` enters
 | dw   | delete current word |
 | dd   | delete current line |
 | D   | delete from current character to end of line (= d$)|
-| dk  | delete current and last row|
-| dj  | delete the current and next line |
-| ddp  | exchange the current and next line |
-| kdgg   | delete all lines before current line |
-| jdG  | delete all lines after current line |
+| dk  | delete **current and last** line|
+| dj  | delete the **current and next** line |
+| ddp  | exchange current and next line |
 | dgg   | delete all lines before current line, including current line |
+| kdgg   | delete all lines before current line |
 | dG  | delete all lines after current line, including current line |
+| jdG  | delete all lines after current line |
 | J   | join line below to the current line |
 
 <a id="Copy_Paste"></a>
@@ -161,17 +175,3 @@ Difference between `substitute` and `replace` is that `substitute` enters
 | u  |  Undo |
 | U  | Undo for current line |
 | Ctrl + r | redo |
-
-<a id="some_cmd_in_NTree"></a>
-
-##[[↑]](#top) some commands in NERDTree
-| Command | Function |
-| :------ | :-------- |
-| m  |  open the manu |
-| s  | open a file in split format |
-| t  | open a file in new tab |
-| gt | jump between tabs |
-| R  | refresh |
-| CD | come back the first vim path |
-| cd | change to new path |
-
