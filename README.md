@@ -23,6 +23,7 @@ sh install_vim_awesome.sh
 ```
 
 # Problem Fixups
+## 1. neocomplete
 If you encountered `neocomplete` problems at vim startup, it may be that 
 your vim version is under 7.4, or it is not `lua` enabled (test it with 
 `:echo has("lua")`.
@@ -46,6 +47,12 @@ plugin by opening the flag in `.vimrc`:
 " neocomplete, which needs lua enabled
 let g:neocomplcache_enable_at_startup = 1 # enable this flag
 ```
+
+## 2. can not load custom colorschemes on windows
+
+If your `vim` on windows can not load the colorschemes in `~/.vim/colors`,
+just copy them to the `<your vim install dir>/colors/`, e.g, `c:/vim74/colors/`.
+Restart vim.
 
 # Cheat sheet
 [cheat sheet](cheat-sheets/)
