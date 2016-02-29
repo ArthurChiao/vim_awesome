@@ -15,11 +15,18 @@ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
 
 # move files to home directory
 cd vim_awesome
-mv .vim* ~
+mv .vimrc .vim/ .vim_runtime/ ~
 
 # install
 cd ~/.vim_runtime
 sh install_vim_awesome.sh
+```
+
+# dependencies
+the following tools are used by the configuration:
+```shell
+# ctags
+sudo apt-get install ctags
 ```
 
 # Problem Fixups
