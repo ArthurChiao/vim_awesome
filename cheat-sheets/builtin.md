@@ -12,6 +12,10 @@ built-in commands
 1. [Delete](#Delete)
 1. [Copy/Paste](#Copy_Paste)
 1. [Undo/Redo](#Undo_Redo)
+1. [Vim Buffer](#buffer)
+1. [Vim Session](#session)
+1. [Character Related](#char_related)
+1. [Misc](#misc)
 
 
 <a id="save_quit"></a>
@@ -175,3 +179,95 @@ Difference between `substitute` and `replace` is that `substitute` enters
 | u  |  Undo |
 | U  | Undo for current line |
 | Ctrl + r | redo |
+
+
+<a id="buffer"></a>
+##[[↑]](#top) Vim Buffer
+
+`:ls` - list all the files in vim buffer, one file each buffer. This is
+especially usuful in that you can see the files edited in other process by
+vim, e.g, you edited `1.txt` in bash1, save and quit. Then in bash2, you
+opened a new file `2.txt` with vim. By executing `:ls` in the vim, you could
+see `1.txt` in the buffer, and you could edit it in this bash now.
+
+| Command | Function |
+| :------ | :-------- |
+| :ls                      |  list all the files in vim buffer |
+| :buffer `id/filename` |  show the specified buffer/file   |
+
+
+<a id=id="explore_window"></a>
+##[[↑]](#top) Explore Window
+
+| Command | Function |
+| :------ | :-------- |
+| :He   |  split window Horizontally, show directory at Below window |
+| :He!  |  split window Horizontally, show directory at Upper window |
+| :Ve   |  split window Vertically, show directory at Right window |
+| ctl+w h/j/k/l | move between windows, in left/down/up/righ direction |
+| `:set scb` or `:set scrollbind` | set scroll bind, type this command in two
+windows, then they will scroll synchronously |
+| `:set scb!` or `:set scrollbind!` | unset scroll bind |
+| vim -p file1 file 2 | open multiple files, with tabs |
+
+
+<a id=id="session"></a>
+##[[↑]](#top) Vim Session
+
+* `:makesession ~/.mysession.vim` - save current vim session (all status)
+* `:makesession! ~/.mysession.vim` - force to save
+* `vim -S ~/.mysession.vim` - open saved session, which contains the status the
+last time vim exited
+
+<a id="quickfix"></a>
+##[[↑]](#top) Quickfix
+
+Vim has a special mode to speedup the edit-compile-edit cycle.  This is
+inspired by the quickfix option of the Manx's Aztec C compiler on the Amiga.
+The idea is to **save the error messages from the compiler in a file and use Vim
+to jump to the errors one by one**.  You can examine each problem and fix it,
+without having to remember all the error messages.
+
+In Vim the quickfix commands are used more generally to find a list of
+positions in files.  For example, |:vimgrep| finds pattern matches.  You can
+use the positions in a script with the |getqflist()| function.  Thus you can
+do a lot more than the edit/compile/fix cycle!
+
+```shell
+# e.g. we are editing and compiling test.cc
+:make # compiling test.cc by executing makefile
+:cw or :cwindow # open a subwindow in vim, list all the compiling errors in it
+                # you can now see the errors and the source code simultaneously
+# some commands
+:cp - go to previous error place
+:cn - go to next error place
+:cl - list all errors
+:cc - list the details of the error
+
+# another example
+grep -R test_func * # search all appearances of string `test_func` from current
+                    # folder recursively
+:cw # vim command, load all the appearances (line number and the line) in subwindow
+```
+
+<a id="char_related"></a>
+##[[↑]](#top) Character Related
+
+| Command | Function |
+| :------ | :-------- |
+| (in visual mode) u | turn all seleted characters into lower case |
+| (in visual mode) U | turn all seleted characters into upper case |
+| ga | show the ascii value of the current character |
+| g8 | show the utf-8 value of the current character |
+| gf | open the file under the current cursor |
+
+<a dir="misc"></a>
+##[[↑]](#top) Misc
+
+`:r!date` - insert current date/time into editor
+
+`:r` stands for **read**, `!` means to execute a shell command, `date` is a
+shell command.
+
+# References
+1. [vim无插件编程技巧](http://mp.weixin.qq.com/s?__biz=MjM5NzA1MTcyMA==&mid=200211176&idx=1&sn=8ef83ebad1938fd03acd424f0c18abb3&scene=2&from=timeline&isappinstalled=0#rd)
