@@ -269,5 +269,18 @@ grep -R test_func * # search all appearances of string `test_func` from current
 `:r` stands for **read**, `!` means to execute a shell command, `date` is a
 shell command.
 
+-----------
+
+从windows往vim (通过putty登录) 粘贴代码时，格式乱掉的解决办法: 在粘贴之前打开
+vim `paste`:
+```shell
+:set paste # turn on vim paste
+
+i # enter inserting mode
+  # paste your content to vim (e.g. shift + RightClick in putty)
+
+:set nopaste # turn off vim paste
+```
+
 # References
 1. [vim无插件编程技巧](http://mp.weixin.qq.com/s?__biz=MjM5NzA1MTcyMA==&mid=200211176&idx=1&sn=8ef83ebad1938fd03acd424f0c18abb3&scene=2&from=timeline&isappinstalled=0#rd)
