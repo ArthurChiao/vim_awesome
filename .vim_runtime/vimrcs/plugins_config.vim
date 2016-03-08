@@ -81,6 +81,9 @@ map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark 
 map <leader>nf :NERDTreeFind<cr>
 
+" fix mis-display problem of nerdtree directory arrow
+let g:NERDTreeDirArrows=0
+
 "open NERDTree automatically when vim starts up
 "if no files were specified
 autocmd VimEnter * if !argc() | NERDTree | endif
