@@ -19,7 +19,7 @@ mv .vimrc .vim/ .vim_runtime/ ~
 
 # install
 cd ~/.vim_runtime
-sh install_vim_awesome.sh
+sh install_awesome_vimrc.sh
 ```
 
 # dependencies
