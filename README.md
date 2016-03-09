@@ -38,6 +38,12 @@ your vim version is under 7.4, or it is not `lua` enabled (test it with
 To fix this problem, please see the solutions provided in
 https://github.com/Shougo/neocomplete.vim.git
 
+One simple/lazy solution is to install `gvim`, which includes `lua` by default:
+```shell
+sudo apt-get install vim-gtk
+```
+Restart your vim, the `neocomplete` should be ok.
+
 If none of the solutions in the above link fits your case, just remove the 
 `neocomplete` plugin:
 ```shell
