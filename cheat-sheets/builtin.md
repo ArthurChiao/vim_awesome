@@ -211,11 +211,11 @@ windows, then they will scroll synchronously |
 | vim -p file1 file 2 | open multiple files, with tabs |
 
 
-<a id=id="session"></a>
+<a id="session"></a>
 ##[[↑]](#top) Vim Session
 
-* `:makesession ~/.mysession.vim` - save current vim session (all status)
-* `:makesession! ~/.mysession.vim` - force to save
+* `:mksession ~/.mysession.vim` - save current vim session (all status)
+* `:mksession! ~/.mysession.vim` - force to save
 * `vim -S ~/.mysession.vim` - open saved session, which contains the status the
 last time vim exited
 

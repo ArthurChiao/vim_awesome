@@ -69,3 +69,5 @@ Restart vim.
 
 # Cheat sheet
 [cheat sheet](cheat-sheets/)
+
+[cheat sheet 中文版](cheat-sheets/cn-zh/)
