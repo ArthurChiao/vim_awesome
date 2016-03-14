@@ -140,3 +140,21 @@ let g:syntastic_python_checkers=['pyflakes']
 " => neocomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:neocomplete#enable_at_startup = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => neocomplcache
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" enable neocomplcache
+" this is an alternative word-completion plugin if you can not use
+" neocomplete, which needs lua enabled
+" let g:neocomplcache_enable_at_startup = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => scratch preview window (std python function/variable suggesting)
+" is some annoying on Ubuntu if it can not auto-close
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" close scratch preview (window for python code-completion) after finish
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif

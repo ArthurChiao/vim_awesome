@@ -15,11 +15,10 @@ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
 
 # move files to home directory
 cd vim_awesome
-mv .vimrc .vim/ .vim_runtime/ ~
+mv .vim* ~
 
 # install
-cd ~/.vim_runtime
-sh install_awesome_vimrc.sh
+sh ~/.vim_runtime/install_awesome_vimrc.sh
 ```
 
 # dependencies
@@ -52,7 +51,7 @@ rm .vim_runtime/sources_forked/neocomplete.vim -rf
 restart the vim.
 
 Or, you can use `neocomplcache`, an alternative to `neocomplete`. Enable this
-plugin by opening the flag in `.vimrc`:
+plugin by opening the flag in `~/.vim_runtime/vimrcs/plugins_config.vim`:
 
 ```shell
 " enable neocomplcache
