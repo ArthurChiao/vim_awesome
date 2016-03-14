@@ -100,6 +100,16 @@ let NERDTreeIgnore=['\.o$[[file]]', '\.d$[[file]]']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:multi_cursor_next_key="\<C-k>"
 
+" Disable autocomplete before multiple cursors to avoid conflict
+function! Multiple_cursors_before()
+    exe 'NeoCompleteLock'
+endfunction
+
+" Enable autocomplete after multiple cursors
+function! Multiple_cursors_after()
+    exe 'NeoCompleteUnlock'
+endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => surround.vim config
