@@ -138,6 +138,18 @@ Difference between `substitute` and `replace` is that `substitute` enters
 | gg  | move to start of file |
 | G   | move to end of file |
 
+Powerful but seldomly knowns:
+
+| Command  |  Function |
+| :------- | :-------- |
+| f + `character`  | find/jump to  first `character` in current line, e.g. `fa`: jump to first `a` in current line |
+
+see [this list for a full vi builtin key bindings](http://hea-www.harvard.edu/~fine/Tech/vi.html).
+
+**Highly recommended!**
+
+
+
 <a id="Delete"></a>
 
 ##[[↑]](#top) Delete
@@ -284,3 +296,4 @@ i # enter inserting mode
 
 # References
 1. [vim无插件编程技巧](http://mp.weixin.qq.com/s?__biz=MjM5NzA1MTcyMA==&mid=200211176&idx=1&sn=8ef83ebad1938fd03acd424f0c18abb3&scene=2&from=timeline&isappinstalled=0#rd)
+1. [vi Complete Key Binding List](http://hea-www.harvard.edu/~fine/Tech/vi.html)
