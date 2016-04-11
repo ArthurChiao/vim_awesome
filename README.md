@@ -3,6 +3,18 @@ vim_awesome
 
 my vim configuration, based on amix's project (https://github.com/amix/vimrc).
 
+screen shots:
+
+Ubuntu:
+
+  <img src="res/screenshot_00.png">
+
+Windows:
+
+  <img src="res/screenshot_01.png">
+
+---------
+
 # install
 ```shell
 # backup your old configuration files
@@ -22,11 +34,15 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 ```
 
 # dependencies
+## Ubuntu
 the following tools are used by the configuration:
 ```shell
 # ctags
 sudo apt-get install ctags
 ```
+
+## Windows
+download `ctags.exe`, put it into `C:\Windows\System32\`.
 
 # Problem Fixups
 ## 1. neocomplete
