@@ -1,7 +1,7 @@
 some plugin commands
 ==========================
 
-## Nerdtree
+## 1. Nerdtree
 Nerdtree[官方完整doc](https://github.com/scrooloose/nerdtree/blob/master/doc/NERD_tree.txt).
 
 Here are some frequently used commands:
@@ -28,3 +28,24 @@ Here are some frequently used commands:
 | A  | 最大化/还原nerdtree window |
 | `'nn` (其中`'`是我的vim配置里的leader键) | 打开/关闭nerdtree window |
 
+
+## 2. Ctrlp
+Visit this page to see the [full command list](https://github.com/ArthurChiao/vim_awesome/tree/master/.vim_runtime/sources_non_forked/ctrlp.vim)
+from the official repository.
+
+![ctrlp](https://camo.githubusercontent.com/0a0b4c0d24a44d381cbad420ecb285abc2aaa4cb/687474703a2f2f692e696d6775722e636f6d2f7949796e722e706e67)
+
+Run `:help ctrlp-mappings` or submit `?` in CtrlP for more mapping help.
+
+Here are some frequently used commands:
+
+| Command | Function |
+| :------ | :-------- |
+| F5 | 更新ctrlp文件缓存 |
+| `<c-j>`  | 在Ctlp window中向上移动光标 |
+| `<c-k>`  | 在Ctlp window中向下移动光标 |
+| `<c-t>`  | 在新`tab`中打开光标下的文件 |
+| `<c-v>`  | 在新`vertical` window中打开光标下的文件 |
+| `<c-x>`  | 在新`horizontal` window中打开光标下的文件 |
+| `<c-y>`  | 创建新文件 |
+| `:<line num>` | 打开文件并跳到指定行, 例如`:15`回车，会打开文件并跳到第15行 |
