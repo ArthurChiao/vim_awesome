@@ -78,9 +78,11 @@ multiple lines with help of `block selection`:
 | Command  |  Function |
 | :-------- |  :--------- |
 | `ctl + v`  `I`   | `ctl + v` (block selection), `I` (insert before selected block)   |
+| read `<file>` | read the specified file, insert content into current file |
+| read `<shell command>` | execute shell command, insert returned contents into current file |
+
 
 <a id="Substitute_Replace"></a>
-
 ##[[↑]](#top) Substitute/Replace
 
 Difference between `substitute` and `replace` is that `substitute` enters
@@ -142,7 +144,8 @@ Powerful but seldomly knowns:
 
 | Command  |  Function |
 | :------- | :-------- |
-| f + `character`  | find/jump to  first `character` in current line, e.g. `fa`: jump to first `a` in current line |
+| f + `character`  | find/jump to  first `character` in current line, e.g. `fa`: jump to first `a` in current line, `3fa` jumps to the 3rd `a` |
+| g; | go the last changed/edited position |
 
 see [this list for a full vi builtin key bindings](http://hea-www.harvard.edu/~fine/Tech/vi.html).
 
@@ -179,8 +182,13 @@ see [this list for a full vi builtin key bindings](http://hea-www.harvard.edu/~f
 | Y   | copy current line |
 | yw   | copy word | 
 | y$   | copy from corsor to end of line |
-| p    | paste after line |
-| P   | paste before current line|
+| p    | paste after line/cursor |
+| P   | paste before current line/cursor |
+
+For pasting, if you are pasting lines, `p` and `P` will paste them before or
+after the current **line**; if you are pasting part of line (e.g. selected
+with `v` and copied with `y`), then the content will be pasted before or
+after the current **cursor**.
  
 <a id="Undo_Redo"></a>
 
