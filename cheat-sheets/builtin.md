@@ -19,22 +19,25 @@ built-in commands
 
 
 <a id="save_quit"></a>
-##[[↑]](#top) save, quit/close files
+##[[↑]](#top) open, save, quit/close files
 
 | Command  |  Function |
 | :-------- |  :--------- |
+| vim -R `<file>` | open file in READ ONLY mode |
+| vim -p `<file1> <file2>` | open multiple files, in differrent tabs |
 | :w   | save |
 | :w!   | force to save |
 | :w <filename> | save as another file |
 | :r <filename> | read text from file, append content after cursor |
 | :q   | quit |
-| :q!   | force to quit |
+| :q!   | force to quit, discard any unsaved changes |
 | :qa   | quit all windows/tabs/panels |
 | :wqa   | save and quit all files |
 | ZZ | save then quit current file |
 
-This command is useful when you change a file and are saving it, but are
-warned that you have no priviledge to modify it.
+This command is useful when you changed a file and are saving it, but are
+warned that you have no priviledge to modify it. It saves the changes with
+root previleages:
 ```shell
 :w !sudo tee %
 
@@ -49,13 +52,13 @@ warned that you have no priviledge to modify it.
 ```shell
 # set folding by indent:
 :setlocal foldmethod=indent
-
-# unfold current block
-za (one more 'za' will fold it again)
-
-# unfold all
-zi
 ```
+
+| Command | Function |
+| :-------- |  :--------- |
+| zf | create folding (fold selected blocks） |
+| za | toggle to unfold/fold current folding |
+| zi | unfold all |
 
 <a id="Insert_Add"></a>
 
@@ -78,8 +81,8 @@ multiple lines with help of `block selection`:
 | Command  |  Function |
 | :-------- |  :--------- |
 | `ctl + v`  `I`   | `ctl + v` (block selection), `I` (insert before selected block)   |
-| read `<file>` | read the specified file, insert content into current file |
-| read `<shell command>` | execute shell command, insert returned contents into current file |
+| :read `<file>` | read the specified file, insert content into current file |
+| :read `<shell command>` | execute shell command, insert returned contents into current file |
 
 
 <a id="Substitute_Replace"></a>
@@ -95,11 +98,11 @@ Difference between `substitute` and `replace` is that `substitute` enters
 | r    | replace current character |
 | R    | replace remaining of current line (start from cursor position) |
 | C    | change remaining of current line (same as `Da`) |
-| :s/old/new/    | substitute 'new' for the first matching 'old'(on the current line) |
-| :s/old/new/g    | substitute 'new' for the all matching 'old' (on the current line) |
-| :%s/old/new/    | substitute 'new' for the first matching 'old' (all lines) |
-| :%s/old/new/g    | substitute 'new' for the all matching 'old' (all lines) |
-| :%s/old/new/gc     | substitute 'new' for the all matching 'old' (all lines and need confirm for each substitution) |
+| :s/old/new/    | substitute 'new' for the first matching 'old'(in current line) |
+| :s/old/new/g    | substitute 'new' for the all matching 'old' (in current line) |
+| :%s/old/new/    | substitute 'new' for the first matching 'old' (in current file) |
+| :%s/old/new/g    | substitute 'new' for the all matching 'old' (in current file) |
+| :%s/old/new/gc     | substitute 'new' for the all matching 'old' (in current file, and need confirmation for each substitution) |
 
 (:point_right: recommand `:%s/old/new/gc`)
 
@@ -122,35 +125,60 @@ Difference between `substitute` and `replace` is that `substitute` enters
 
 ##[[↑]](#top) Cursor movement
 
+Basic movements:
+
 | Command  |  Function |
 | :------- | :-------- |
 | h   | move left |
 | j   | move down |
 | k   | move up |
 | l   | move right |
-| w :+1:   | jump by start of words(punctuation considered words) |
-| W   | jump by words (spaces separate words) |
-| e   | jump by end of words |
-| E   | jump by end of words (spaces separate words) |
-| b :+1:  | jump backward by words  |
-| B   | jump backward by words (spaces separate words) |
-| 0  :+1: | move to start of line |
-| $   :+1:| move to end of line |
-| ^   | move to the first non-blank character of line |
+| w :+1:   | move forward one `word` (punctuation considered words) |
+| W   | move forward one `WORD` (spaces separated words) |
+| b :+1:  | move backward one word  |
+| B   | move backward one WORD (spaces separated words) |
+| e   | move to end of `word` |
+| E   | move to end of `WORD` (spaces separated words) |
 | gg  | move to start of file |
 | G   | move to end of file |
+
+Some advanced movements:
+
+| Command  |  Function |
+| :------- | :-------- |
+| 0  :+1: | move to column zero (precisely, start of line) |
+| `|`  :+1: | move to column zero |
+| `-` | move to first non-whitespace of previous line |
+| `+` | move to first non-whitespace of next line |
+| $   :+1:| move to end of line |
+| ^   | move to the first non-blank character of line |
+| H   | HOME cursor, goto first line on screen |
+| L   | goto LAST line on screen |
+| M   | goto MIDDLE line on screen |
 
 Powerful but seldomly knowns:
 
 | Command  |  Function |
 | :------- | :-------- |
-| f + `character`  | find/jump to  first `character` in current line, e.g. `fa`: jump to first `a` in current line, `3fa` jumps to the 3rd `a` |
+| f + `character`  | find character after cursor in current line, e.g. `fa`: jump to first `a` in current line, `3fa` jumps to the 3rd `a` |
+| ; | repeat last `f`, `F`, `t`, `T` command |
 | g; | go the last changed/edited position |
+
+Moving/jumping by sentences, paragraphs,
+
+| Command  |  Function |
+| :------- | :-------- |
+| `(` :+1:  | move to previous sentence |
+| `)` :+1:  | move to next sentence |
+| `[` | move to previous "{...}" section |
+| `]` | move to next "{...}" section |
+| `{` | move to previous blank-line separated section |
+| `}` | move to next blank-line separated section |
+
 
 see [this list for a full vi builtin key bindings](http://hea-www.harvard.edu/~fine/Tech/vi.html).
 
 **Highly recommended!**
-
 
 
 <a id="Delete"></a>
@@ -164,13 +192,11 @@ see [this list for a full vi builtin key bindings](http://hea-www.harvard.edu/~f
 | dw   | delete current word |
 | dd   | delete current line |
 | D   | delete from current character to end of line (= d$)|
-| dk  | delete **current and last** line|
+| dk  | delete **current and above** line|
 | dj  | delete the **current and next** line |
-| ddp  | exchange current and next line |
+| ddp  | exchange current and next line (`dd` + `p`) |
 | dgg   | delete all lines before current line, including current line |
-| kdgg   | delete all lines before current line |
 | dG  | delete all lines after current line, including current line |
-| jdG  | delete all lines after current line |
 | J   | join line below to the current line |
 
 <a id="Copy_Paste"></a>
@@ -179,7 +205,7 @@ see [this list for a full vi builtin key bindings](http://hea-www.harvard.edu/~f
 
 | Command  |  Function |
 | :------- | :-------- |
-| Y   | copy current line |
+| `yy` or `Y`   | copy current line |
 | yw   | copy word | 
 | y$   | copy from corsor to end of line |
 | p    | paste after line/cursor |
@@ -198,7 +224,7 @@ after the current **cursor**.
 | :------ | :-------- |
 | u  |  Undo |
 | U  | Undo for current line |
-| Ctrl + r | redo |
+| Ctl + r | redo |
 
 
 <a id="buffer"></a>
@@ -225,10 +251,9 @@ see `1.txt` in the buffer, and you could edit it in this bash now.
 | :He!  |  split window Horizontally, show directory at Upper window |
 | :Ve   |  split window Vertically, show directory at Right window |
 | ctl+w h/j/k/l | move between windows, in left/down/up/righ direction |
-| `:set scb` or `:set scrollbind` | set scroll bind, type this command in two
-windows, then they will scroll synchronously |
+| `:set scb` or `:set scrollbind` | set scroll bind, type this command in two windows, then they will scroll synchronously |
 | `:set scb!` or `:set scrollbind!` | unset scroll bind |
-| vim -p file1 file 2 | open multiple files, with tabs |
+| vim -p file1 file2 | open multiple files, with tabs |
 
 
 <a id="session"></a>
@@ -304,4 +329,7 @@ i # enter inserting mode
 
 # References
 1. [vim无插件编程技巧](http://mp.weixin.qq.com/s?__biz=MjM5NzA1MTcyMA==&mid=200211176&idx=1&sn=8ef83ebad1938fd03acd424f0c18abb3&scene=2&from=timeline&isappinstalled=0#rd)
+
 1. [vi Complete Key Binding List](http://hea-www.harvard.edu/~fine/Tech/vi.html)
+
+  Highly recommended!

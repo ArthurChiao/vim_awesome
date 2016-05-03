@@ -1,7 +1,12 @@
 vim cheet sheet
 =================
 
-[中文版](cn-zh/)
+This is a cheat sheet of the bind keys. It includes both vim built-in keys
+as well as some custom keys for the various plugins.
+
+Also see [here](cn-zh/) for the Chinease edition [中文版](cn-zh/).
+
+------------
 
 1. [basic builtin commands](builtin.md)
 1. [visual mode](visual-mode.md)
