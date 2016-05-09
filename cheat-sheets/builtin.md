@@ -60,6 +60,33 @@ root previleages:
 | za | toggle to unfold/fold current folding |
 | zi | unfold all |
 
+This is a folding command list picked up
+from [stackoverflow](http://stackoverflow.com/questions/23579058/vim-python-mode-folding):
+
+| Command | Function |
+| :-------- |  :--------- |
+| zf`<num>`j | creates a fold from the cursor down `num` lines, e.g. `zf3j` |
+| zf/string | creates a fold from the cursor to string  |
+| `zj` | moves the cursor to the next fold |
+| `zk` | moves the cursor to the previous fold |
+| zo | opens a fold at the cursor |
+| zO | opens all folds at the cursor |
+| `zc` | close a fold at the cursor |
+| zm | increases the foldlevel by one |
+| zM | closes all open folds |
+| zr | decreases the foldlevel by one |
+| zR | decreases the foldlevel to zero -- all folds will be open |
+| `zd` | deletes the fold at the cursor |
+| `zE` | deletes all folds |
+| [z | move to start of open fold |
+| ]z | move to end of open fold |
+
+by the way, I also found that `h` or `l` will unfold the code when cursor
+is at one folding, so my frequently used keys are
+
+* `h` or `l` or `za`: unfold current folding
+* `zc` or `za`: fold/re-fold
+
 <a id="Insert_Add"></a>
 
 ##[[↑]](#top) Insert/Add
