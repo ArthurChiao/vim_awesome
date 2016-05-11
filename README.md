@@ -1,7 +1,20 @@
 vim_awesome
 ===========
 
-my vim configuration, based on amix's project (https://github.com/amix/vimrc).
+**Index:**
+
+1. [About](#about)
+1. [Supported Platforms](#supported_platforms)
+1. [Install](#install)
+1. [FAQ](#faq)
+
+---------------
+
+<a id="about"></a>
+# About
+
+My vim configuration, originally derived from
+[amix's project](https://github.com/amix/vimrc).
 
 screen shots:
 
@@ -13,38 +26,83 @@ Windows:
 
   <img src="res/screenshot_01.png">
 
----------
 
-# install
+<a id="supported_platforms"></a>
+# Supported Platforms
+This configuration is best suitable for vim **7.4+**. However, it could also
+be used with vim under this version - just disable those features that causing
+errors at vim start (comment them out).
+
+Tested workable on the following platforms:
+
+* **Ubuntu** 12.04, 14.04
+
+* **RedHat** 6.7, 7.1
+
+* **Centos** 6.7, 7.1
+
+* **Windows** win7
+
+* **openSUSE** 13.2
+
+
+<a id="install"></a>
+# Install
+Tested on **Ubuntu/Redhat/CentOS/OpenSUSE/Windows/** platforms.
+
+For windows users, you need a bash, such as, `cygwin`, `mingw`, or like what
+I used, `git bash`, which is installed along with `git`.
+
 ```shell
-# backup your old configuration files
-cd ~
-mkdir vimback
-mv .vim* vimback
+# it's better to backup your old configuration files
+$ cd ~ && mkdir vimback && mv .vim* vimback -rf
 
-# clone configuration files
-git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
+# clone repo
+$ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
 
-# move files to home directory
-cd vim_awesome
-mv .vim* ~
+# copy files to home directory
+$ cd vim_awesome && cp .vim_runtime ~ -rf
 
 # install
-sh ~/.vim_runtime/install_awesome_vimrc.sh
+$ sh ~/.vim_runtime/install_awesome_vimrc.sh
 ```
 
-# dependencies
+# Dependencies
+Some dependencies are needed to enable the full-feature of the configuration.
+You may need to install them manually if they are not there. However, you
+could also choose to ignore them, just disable the features when vim report
+errors at the configuration file `error: at line xxx in file xxx`.
+
 ## Ubuntu
 the following tools are used by the configuration:
 ```shell
-# ctags
-sudo apt-get install ctags
+# install ctags
+$ sudo apt-get install ctags
+
+# install vim-gtk, this enables `neocomplete`, one of the most powerful
+# auto completion plugin
+$ sudo apt-get install vim-gtk
+```
+
+## RedHat & CentOS
+```shell
+# install ctags
+$ sudo yum install ctags
+```
+
+## openSUSE
+```shell
+$ sudo zypper install ctags
 ```
 
 ## Windows
 download `ctags.exe`, put it into `C:\Windows\System32\`.
 
-# Problem Fixups
+`neocomplete` needs lua enabled when gvim is compiled. Otherwise, it doesn't
+work (but reports no errors).
+
+<a id="faq"></a>
+# FAQ
 ## 1. neocomplete
 If you encountered `neocomplete` problems at vim startup, it may be that 
 your vim version is under 7.4, or it is not `lua` enabled (test it with 
