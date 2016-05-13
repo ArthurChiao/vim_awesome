@@ -73,7 +73,8 @@ from [stackoverflow](http://stackoverflow.com/questions/23579058/vim-python-mode
 | zO | opens all folds at the cursor |
 | `zc` | close a fold at the cursor |
 | zm | increases the foldlevel by one |
-| zM | closes all open folds |
+| `zR` | open all folds in file |
+| `zM` | closes all open folds in file |
 | zr | decreases the foldlevel by one |
 | zR | decreases the foldlevel to zero -- all folds will be open |
 | `zd` | deletes the fold at the cursor |
@@ -86,6 +87,19 @@ is at one folding, so my frequently used keys are
 
 * `h` or `l` or `za`: unfold current folding
 * `zc` or `za`: fold/re-fold
+* `zR` and `zM`: open/close all folds in current file
+
+If you'd like to create new fold manually, first set `foldmethod` to `manual`:
+```shell
+# set foldmethod to manul in vim
+:set foldmethod=manual
+
+# select text/code and create fold with `zf`
+zf
+```
+otherwise, you will get error like this:
+
+> E350: Cannot create fold with current 'foldmethod'
 
 <a id="Insert_Add"></a>
 
