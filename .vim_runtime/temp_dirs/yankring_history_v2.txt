@@ -1,100 +1,0 @@
-),v
-(,v
-T,v
-_,v
-AfxMessageBox,v
-x,v
-o,v
-B,v
-e,v
-g,v
-a,v
-s,v
-M,v
-f,v
-A,v
-	},V
-		AfxMessageBox(_T("Encoder does not support the set audio sample format!")) ;,V
-	if (!check_sample_fmt(codec, c->sample_fmt)) {,V
-,V
-		,V
-		AfxMessageBox(_T("Could not setup audio frame!")) ;,V
-	if (ret < 0) {,V
-		AfxMessageBox(_T("Could not allocate enough bytes for samples buffer!")) ;,V
-	if (!samples) {,V
-		AfxMessageBox(_T("Could not get sample buffer size!")) ;,V
-	if (buffer_size < 0) {,V
-		AfxMessageBox(_T("Could not allocate audio codec context!")) ;,V
-	{,V
-	if (!c),V
-		AfxMessageBox(_T("Codec not found!")) ;,V
-	if (!codec),V
-#pragma comment(lib, "avutil.lib"),V
-#pragma comment(lib, "avcodec.lib"),V
-} ;,V
-#include <libavcodec\\avcodec.h>,V
-{,V
-extern "C",V
-    int genpts = fmt_ctx->flags & AVFMT_FLAG_GENPTS;,V
-fmt_ctx->flags | ,v
-    printf("genpts: %d\n", genpts);,V
-        int genpts = s->flags & AVFMT_FLAG_GENPTS;        printf("genpts: %d\n", genpts);,V
-const ,v
-    const int genpts = s->flags & AVFMT_FLAG_GENPTS;,V
-    int src_rate = 48000, dst_rate = 44100;,V
-SURROUND,v
-O,v
-N,v
-E,v
-R,v
-S,v
-    int64_t src_ch_layout = AV_CH_LAYOUT_STEREO, dst_ch_layout = AV_CH_LAYOUT_MONO ;//AV_CH_LAYOUT_SURROUND;,V
-nb_samples,v
-l,v
-p,v
-m,v
-b,v
-n,v
-        printf("---while: dst_nb_samples: %d ---\n", dst_nb_samples);,V
-    printf("---dst_nb_samples: %d ---\n", dst_nb_samples);,V
-;,v
- ,v
-src_rate,v
-dst_rate,v
-src_nb_samples,v
-        av_rescale_rnd(src_nb_samples, dst_rate, src_rate, AV_ROUND_UP);,V
-P,v
-L,v
-F,v
-V,v
-/,v
-*,v
-/*AV_SAMPLE_FMT_S16*/AV_SAMPLE_FMT_FLTP,v
-"audio1.pcm",v
-audio_dst_filename,v
-        audio_dst_file = fopen(audio_dst_filename, "wb");,V
-static FILE *audio_dst_file = NULL;,V
-static const char *audio_dst_filename = NULL;,V
-            fwrite(frame->extended_data[0], 1, unpadded_linesize, audio_dst_file);,V
-     ,V
-void av_init_packet(AVPacket *pkt){    pkt->pts                  = AV_NOPTS_VALUE;    pkt->dts                  = AV_NOPTS_VALUE;    pkt->pos                  = -1;    pkt->duration             = 0;    pkt->convergence_duration = 0;    pkt->flags                = 0;    pkt->stream_index         = 0;#if FF_API_DESTRUCT_PACKETFF_DISABLE_DEPRECATION_WARNINGS    pkt->destruct             = NULL;FF_ENABLE_DEPRECATION_WARNINGS#endif    pkt->buf                  = NULL;    pkt->side_data            = NULL;    pkt->side_data_elems      = 0;},V
-    if (open_codec_context(&video_stream_idx, fmt_ctx, AVMEDIA_TYPE_VIDEO) >= 0) {        video_stream = fmt_ctx->streams[video_stream_idx];        video_dec_ctx = video_stream->codec;        video_dst_file = fopen(video_dst_filename, "wb");        if (!video_dst_file) {            fprintf(stderr, "Could not open destination file %s\n", video_dst_filename);            ret = 1;            goto end;        }        /* allocate image where the decoded image will be put */        ret = av_image_alloc(video_dst_data, video_dst_linesize,                             video_dec_ctx->width, video_dec_ctx->height,                             video_dec_ctx->pix_fmt, 1);        if (ret < 0) {            fprintf(stderr, "Could not allocate raw video buffer\n");            goto end;        }        video_dst_bufsize = ret;    },V
-echo hello lua,V
--ThinkPad-S5-S531,V
-arthur,v
-1,v
-3,v
-5,v
--,v
-d,v
-k,v
-i,v
-h,v
-r,v
-u,v
-t,v
-#,v
-#127.0.1.1	arthur-ThinkPad-S5-S531,V
-127.0.1.1	arthur-ThinkPad-S5-S531,V
-",v
-3EFFE2,v
