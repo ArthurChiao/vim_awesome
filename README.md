@@ -140,6 +140,24 @@ If your `vim` on windows can not load the colorschemes in `~/.vim/colors`,
 just copy them to the `<your vim install dir>/colors/`, e.g, `c:/vim74/colors/`.
 Restart vim.
 
+## 3. for python coders
+If you open an existing python file, you will find that all
+functions/classes are folded, it may embrass you at the scene, like the
+following,
+
+![python-mode-folding](res/python-folding.jpg)
+
+here are some quick remedies:
+
+* `za` - toggle to open/close current folding
+* `zR` and `zM` - open/close all foldings in current file
+
+This is resulted by the default settings of `PythonMode` plugin. If you do not
+like it, you could just remove it by deleting the
+`~/.vim_runtime/sources_forked/python-mode/` folder in your host, and restart vim.
+However, i highly recommand you to get familir with this tool, which can
+accelerate your python developing by great extent.
+
 # Cheat sheet
 [cheat sheet](cheat-sheets/)
 
