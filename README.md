@@ -67,6 +67,15 @@ $ cd vim_awesome && cp .vim_runtime ~ -rf
 $ sh ~/.vim_runtime/install_awesome_vimrc.sh
 ```
 
+There is also auto scripts for auto install/uninstall, but I only tested under
+limited platforms:
+```shell
+$ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
+
+$ cd vim_awesome && ./install.sh
+$ cd vim_awesome && ./uninstall.sh
+```
+
 # Dependencies
 Some dependencies are needed to enable the full-feature of the configuration.
 You may need to install them manually if they are not there. However, you
