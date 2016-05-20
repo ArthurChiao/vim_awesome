@@ -37,8 +37,8 @@ if has("gui_running")
     colorscheme peaksea
 else
     set background=dark
-    colorscheme desert 
-    let g:colors_name="desert"
+    colorscheme Tomorrow-Night-Eighties 
+    let g:colors_name="Tomorrow-Night-Eighties"
 endif
 
 

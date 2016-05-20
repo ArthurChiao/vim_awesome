@@ -145,7 +145,7 @@ let g:neocomplcache_enable_at_startup = 1 # enable this flag
 
 ## 2. can not load custom colorschemes on windows
 
-If your `vim` on windows can not load the colorschemes in `~/.vim/colors`,
+If your `vim` on windows can not load the colorschemes in `~/.vim_runtime/colors`,
 just copy them to the `<your vim install dir>/colors/`, e.g, `c:/vim74/colors/`.
 Restart vim.
 
