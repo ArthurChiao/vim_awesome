@@ -20,7 +20,8 @@ screen shots:
 
 Ubuntu:
 
-  <img src="res/screenshot_00.png">
+  <img src="res/ss-01-python.jpg">
+  <img src="res/ss-03-cpp.jpg">
 
 Windows:
 
@@ -41,9 +42,9 @@ Tested workable on the following platforms:
 
 * **Centos** 6.7, 7.1
 
-* **Windows** win7
-
 * **openSUSE** 13.2
+
+* **Windows** win7
 
 
 <a id="install"></a>
