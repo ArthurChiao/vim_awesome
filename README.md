@@ -48,7 +48,18 @@ Tested workable on the following platforms:
 
 
 <a id="install"></a>
-# Install
+# Quick Install
+Auto scripts for install/uninstall, but I only tested under limited platforms:
+```shell
+$ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
+
+$ cd vim_awesome
+
+$ ./install.sh
+$ ./uninstall.sh
+```
+
+# Custome Install
 Tested on **Ubuntu/Redhat/CentOS/OpenSUSE/Windows/** platforms.
 
 For windows users, you need a bash, such as, `cygwin`, `mingw`, or like what
@@ -68,14 +79,6 @@ $ cd vim_awesome && cp .vim_runtime ~ -rf
 $ sh ~/.vim_runtime/install_awesome_vimrc.sh
 ```
 
-There is also auto scripts for auto install/uninstall, but I only tested under
-limited platforms:
-```shell
-$ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
-
-$ cd vim_awesome && ./install.sh
-$ cd vim_awesome && ./uninstall.sh
-```
 
 # Dependencies
 Some dependencies are needed to enable the full-feature of the configuration.

@@ -90,9 +90,7 @@ autocmd VimEnter * if !argc() | NERDTree | endif
 
 "set NERDTree to ignore certain files/directories, to show a more clean
 "source code tree
-"ignore all object files *.o
-"ignore all dependency files *.d
-let NERDTreeIgnore=['\.o$[[file]]', '\.d$[[file]]']
+let NERDTreeIgnore=['\.o$[[file]]', '\.d$[[file]]', '\.pyc', '\~$', '\.swp']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
