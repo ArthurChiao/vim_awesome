@@ -166,3 +166,11 @@ let g:neocomplete#enable_at_startup = 1
 " close scratch preview (window for python code-completion) after finish
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => PythonMode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" disable auto lint, it is slow for large projects
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_on_fly = 0
+let g:pymode_rope = 0
