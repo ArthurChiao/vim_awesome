@@ -34,6 +34,8 @@ built-in commands
 | :qa   | quit all windows/tabs/panels |
 | :wqa   | save and quit all files |
 | ZZ | save then quit current file |
+| :e | reload current file from disk, short for `:edit` |
+| :e! | reload current file from disk, discard current changes |
 
 This command is useful when you changed a file and are saving it, but are
 warned that you have no priviledge to modify it. It saves the changes with
