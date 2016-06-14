@@ -124,7 +124,9 @@ your vim version is under 7.4, or it is not `lua` enabled (test it with
 To fix this problem, please see the solutions provided in
 https://github.com/Shougo/neocomplete.vim.git
 
-One simple/lazy solution is to install `gvim`, which includes `lua` by default:
+### Ubuntu
+One simple/lazy solution for Ubuntu is to install `gvim`, which includes
+`lua` by default:
 ```shell
 sudo apt-get install vim-gtk
 ```
@@ -139,6 +141,23 @@ restart the vim.
 
 Or, you can use `neocomplcache`, an alternative to `neocomplete`. Enable this
 plugin by opening the flag in `~/.vim_runtime/vimrcs/plugins_config.vim`:
+
+### CentOS
+Most likely, you need to [compile vim74 from source](http://www.fullybaked.co.uk/articles/installing-latest-vim-on-centos-from-source) to get lua enabled:
+```shell
+$ yum groupinstall 'Development tools'
+
+$ yum install ncurses ncurses-devel
+$ yum install lua-devel
+
+$ wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
+$ tar -xjf vim-7.4.tar.bz2
+
+$ cd vim74
+$ ./configure --prefix=/usr --with-features=huge --enable-rubyinterp --enable-pythoninterp --enable-luainterp
+$ make && make install
+```
+Test with `:echo has("lua")`, should return 1.
 
 ```shell
 " enable neocomplcache
