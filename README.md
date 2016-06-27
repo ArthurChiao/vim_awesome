@@ -20,12 +20,12 @@ screen shots:
 
 Ubuntu:
 
-  <img src="res/ss-01-python.jpg">
-  <img src="res/ss-03-cpp.jpg">
+  <img src="res/ss-00-c.png">
+  <img src="res/ss-01-python.png">
 
 Windows:
 
-  <img src="res/screenshot_01.png">
+  <img src="res/ss-win-01.png">
 
 
 <a id="supported_platforms"></a>

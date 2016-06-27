@@ -49,3 +49,20 @@ Here are some frequently used commands:
 | `<c-x>`  | open selected file in new `horizontal` split window |
 | `<c-y>`  | create a new file and its parent directories |
 | `:<line num>` | open file and jump to specified line, e.g. type `:15` then `Enter`, the file will be opened and cursor will be at `15th line` |
+
+## 3. Tarbar
+
+`:Ta` + TAB to show all commands starts with `Ta`.
+
+| Command | Function |
+| :------ | :-------- |
+| :Tagbar | toggle of tagbar |
+
+## Python Mode
+
+`:Py` + TAB to show all commands starts with `Py`.
+
+| Command | Function |
+| :------ | :-------- |
+| :PyLint | run pylint |
+
