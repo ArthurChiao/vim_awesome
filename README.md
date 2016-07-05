@@ -7,10 +7,11 @@ vim_awesome
 1. [Supported Platforms](#supported_platforms)
 1. [Install](#install)
 1. [FAQ](#faq)
+1. [Cheat Sheets](#cheat_sheets)
 
 ---------------
 
-<a id="about"></a>
+<a name="about"></a>
 # About
 
 My vim configuration, originally derived from
@@ -28,7 +29,7 @@ Windows:
   <img src="res/ss-win-01.png">
 
 
-<a id="supported_platforms"></a>
+<a name="supported_platforms"></a>
 # Supported Platforms
 This configuration is best suitable for vim **7.4+**. However, it could also
 be used with vim under this version - just disable those features that causing
@@ -47,7 +48,7 @@ Tested workable on the following platforms:
 * **Windows** win7
 
 
-<a id="install"></a>
+<a name="install"></a>
 # Quick Install
 Auto scripts for install/uninstall, but I only tested under limited platforms:
 ```shell
@@ -114,7 +115,7 @@ download `ctags.exe`, put it into `C:\Windows\System32\`.
 `neocomplete` needs lua enabled when gvim is compiled. Otherwise, it doesn't
 work (but reports no errors).
 
-<a id="faq"></a>
+<a name="faq"></a>
 # FAQ
 ## 1. neocomplete
 If you encountered `neocomplete` problems at vim startup, it may be that 
@@ -190,6 +191,7 @@ like it, you could just remove it by deleting the
 However, i highly recommand you to get familir with this tool, which can
 accelerate your python developing by great extent.
 
+<a name="cheat_sheets"></a>
 # Cheat sheet
 [cheat sheet](cheat-sheets/)
 
