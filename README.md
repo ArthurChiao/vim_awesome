@@ -5,7 +5,7 @@ vim_awesome
 
 1. [About](#about)
 1. [Supported Platforms](#supported_platforms)
-1. [Install](#install)
+1. [Install and Update](#install)
 1. [FAQ](#faq)
 1. [Cheat Sheets](#cheat_sheets)
 
@@ -49,7 +49,8 @@ Tested workable on the following platforms:
 
 
 <a name="install"></a>
-# Quick Install
+# Install and Update
+## Quick Install
 Auto scripts for install/uninstall, but I only tested under limited platforms:
 ```shell
 $ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
@@ -60,7 +61,7 @@ $ ./install.sh
 $ ./uninstall.sh
 ```
 
-# Custome Install
+## Custome Install
 Tested on **Ubuntu/Redhat/CentOS/OpenSUSE/Windows/** platforms.
 
 For windows users, you need a bash, such as, `cygwin`, `mingw`, or like what
@@ -80,40 +81,50 @@ $ cd vim_awesome && cp .vim_runtime ~ -rf
 $ sh ~/.vim_runtime/install_awesome_vimrc.sh
 ```
 
+## Update
+```shell
+$ ./update.sh
+```
+This will update your vim configuration to the lasted `vim_awesome`.
 
-# Dependencies
+
+## Dependencies
 Some dependencies are needed to enable the full-feature of the configuration.
 You may need to install them manually if they are not there. However, you
 could also choose to ignore them, just disable the features when vim report
 errors at the configuration file `error: at line xxx in file xxx`.
 
-## Ubuntu
-the following tools are used by the configuration:
-```shell
-# install ctags
-$ sudo apt-get install ctags
+1. Ubuntu
 
-# install vim-gtk, this enables `neocomplete`, one of the most powerful
-# auto completion plugin
-$ sudo apt-get install vim-gtk
-```
+  the following tools are used by the configuration:
 
-## RedHat & CentOS
-```shell
-# install ctags
-$ sudo yum install ctags
-```
+  ```shell
+  # install ctags
+  $ sudo apt-get install ctags
+  
+  # install vim-gtk, this enables `neocomplete`, one of the most powerful
+  # auto completion plugin
+  $ sudo apt-get install vim-gtk
+  ```
 
-## openSUSE
-```shell
-$ sudo zypper install ctags
-```
+1. RedHat & CentOS
 
-## Windows
-download `ctags.exe`, put it into `C:\Windows\System32\`.
+  ```shell
+  # install ctags
+  $ sudo yum install ctags
+  ```
 
-`neocomplete` needs lua enabled when gvim is compiled. Otherwise, it doesn't
-work (but reports no errors).
+1. openSUSE
+
+  ```shell
+  $ sudo zypper install ctags
+  ```
+
+1. Windows
+  Download `ctags.exe`, put it into `C:\Windows\System32\`.
+  
+  `neocomplete` needs lua enabled when gvim is compiled. Otherwise, it doesn't
+  work (but reports no errors).
 
 <a name="faq"></a>
 # FAQ
@@ -125,47 +136,49 @@ your vim version is under 7.4, or it is not `lua` enabled (test it with
 To fix this problem, please see the solutions provided in
 https://github.com/Shougo/neocomplete.vim.git
 
-### Ubuntu
-One simple/lazy solution for Ubuntu is to install `gvim`, which includes
-`lua` by default:
-```shell
-sudo apt-get install vim-gtk
-```
-Restart your vim, the `neocomplete` should be ok.
+1. Ubuntu
 
-If none of the solutions in the above link fits your case, just remove the 
-`neocomplete` plugin:
-```shell
-rm .vim_runtime/sources_forked/neocomplete.vim -rf
-```
-restart the vim.
+  One simple/lazy solution for Ubuntu is to install `gvim`, which includes
+  `lua` by default:
+  ```shell
+  $ sudo apt-get install vim-gtk
+  ```
+  Restart your vim, the `neocomplete` should be ok.
+  
+  If none of the solutions in the above link fits your case, just remove the 
+  `neocomplete` plugin:
+  ```shell
+  $ rm .vim_runtime/sources_forked/neocomplete.vim -rf
+  ```
+  restart the vim.
+  
+  Or, you can use `neocomplcache`, an alternative to `neocomplete`. Enable this
+  plugin by opening the flag in `~/.vim_runtime/vimrcs/plugins_config.vim`:
 
-Or, you can use `neocomplcache`, an alternative to `neocomplete`. Enable this
-plugin by opening the flag in `~/.vim_runtime/vimrcs/plugins_config.vim`:
+1. CentOS
 
-### CentOS
-Most likely, you need to [compile vim74 from source](http://www.fullybaked.co.uk/articles/installing-latest-vim-on-centos-from-source) to get lua enabled:
-```shell
-$ yum groupinstall 'Development tools'
-
-$ yum install ncurses ncurses-devel
-$ yum install lua-devel
-
-$ wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
-$ tar -xjf vim-7.4.tar.bz2
-
-$ cd vim74
-$ ./configure --prefix=/usr --with-features=huge --enable-rubyinterp --enable-pythoninterp --enable-luainterp
-$ make && make install
-```
-Test with `:echo has("lua")`, should return 1.
-
-```shell
-" enable neocomplcache
-" this is an alternative word-completion plugin if you can not use
-" neocomplete, which needs lua enabled
-let g:neocomplcache_enable_at_startup = 1 # enable this flag
-```
+  Most likely, you need to [compile vim74 from source](http://www.fullybaked.co.uk/articles/installing-latest-vim-on-centos-from-source) to get lua enabled:
+  ```shell
+  $ yum groupinstall 'Development tools'
+  
+  $ yum install ncurses ncurses-devel
+  $ yum install lua-devel
+  
+  $ wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
+  $ tar -xjf vim-7.4.tar.bz2
+  
+  $ cd vim74
+  $ ./configure --prefix=/usr --with-features=huge --enable-rubyinterp --enable-pythoninterp --enable-luainterp
+  $ make && make install
+  ```
+  Test with `:echo has("lua")`, should return 1.
+  
+  ```shell
+  " enable neocomplcache
+  " this is an alternative word-completion plugin if you can not use
+  " neocomplete, which needs lua enabled
+  let g:neocomplcache_enable_at_startup = 1 # enable this flag
+  ```
 
 ## 2. can not load custom colorschemes on windows
 
@@ -190,6 +203,8 @@ like it, you could just remove it by deleting the
 `~/.vim_runtime/sources_forked/python-mode/` folder in your host, and restart vim.
 However, i highly recommand you to get familir with this tool, which can
 accelerate your python developing by great extent.
+
+For more commands about code folding/unfolding, see [Cheat Sheets](cheat-sheets/builtin.md#code_folding).
 
 <a name="cheat_sheets"></a>
 # Cheat sheet
