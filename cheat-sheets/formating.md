@@ -1,7 +1,15 @@
 some commands for code/text formating
 =====================================
 
-1. <a name="set list/nolist">Set List</a>
+Index:
+
+1. [Set List](#set_list)
+1. [Indent](#indent)
+1. [Bracket Matching](#bracket_matching)
+
+--------------
+
+1. <a name="set_list">Set List</a>
 
   `set list` will make the **tabs/whitespaces/EoL** be visable.
 
@@ -19,6 +27,13 @@ some commands for code/text formating
   >2j # indent current line and 2 lines below, to right
   <4k # indent current line and 4 lines above, to left
   ```
+
+1. <a name="bracket_matching">Bracket Matching</a>
+
+  `%` will jump to the matching brackets, eg. `(` or `[` or `{` `}`.
+
+  If the character under cursor is not a bracket char,
+  it will find the first one in forward direction.
 
 # References
 

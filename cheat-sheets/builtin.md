@@ -6,11 +6,12 @@ built-in commands
 1. [Save/Quit](#save_quit)
 1. [Code Folding](#code_folding)
 1. [Insert/Add](#Insert_Add)
-1. [Substitute/Replace](#Substitute_Replace)
-1. [Search/Find](#Search_Find)
-1. [Cursor movement](#Cursor_movement)
-1. [Delete](#Delete)
-1. [Copy/Paste](#Copy_Paste)
+1. [Substitute/Replace](#substitute_replace)
+1. [Search/Find](#search_find)
+1. [Cursor Moving](#cursor_moving)
+1. [Screen Scrool](#screen_scroll)
+1. [Delete](#delete)
+1. [Copy/Paste](#copy_paste)
 1. [Undo/Redo](#Undo_Redo)
 1. [Vim Buffer](#buffer)
 1. [Vim Session](#session)
@@ -19,7 +20,7 @@ built-in commands
 
 
 <a id="save_quit"></a>
-##[[↑]](#top) open, save, quit/close files
+##[[↑]](#top) Open, Save, Quit/Close files
 
 1. Basic
 
@@ -56,7 +57,7 @@ built-in commands
 
 <a id="code_folding"></a>
 
-##[[↑]](#top) code folding (代码折叠）
+##[[↑]](#top) Code Folding (代码折叠）
 
 1. Basic
 
@@ -145,7 +146,7 @@ built-in commands
   | :read `<shell command>` | execute shell command, insert returned contents into current file |
 
 
-<a id="Substitute_Replace"></a>
+<a id="substitute_replace"></a>
 ##[[↑]](#top) Substitute/Replace
 
 1. Basic
@@ -169,9 +170,30 @@ built-in commands
 
   (:point_right: recommand `:%s/old/new/gc`)
 
-<a id="Search_Find"></a>
+1. Advanced
+
+  Following one-strike commands are same effects with their two-strike counterparts:
+
+  | Command   | Same As Command  | Action |
+  | :-------- | :--------------- | :--------- |
+  | x | dl | delete one char (forward) |
+  | X | dh | delete one char (backward) |
+  | D | d$ | delete remaing of current line |
+  | C | c$ | change remaining of current line |
+  | s | cl | substitute/change one char |
+  | S | cc | substitute entire line |
+
+<a id="search_find"></a>
 
 ##[[↑]](#top) Search/Find
+1. Special Characters
+
+  | Command  |  Action |
+  | :-------- |  :--------- |
+  | `:/the`  | search strings containing `the` in current file |
+  | `:/the\>`  | search strings end with `the` in current file |
+  | `:/\<the`  | search strings start with `the` in current file |
+
 1. search in text
 
   search all the occurrances of word `session`, the effect is similar as
@@ -184,9 +206,9 @@ built-in commands
   :copen # open the window that lists all the search results
   ```
 
-<a id="Cursor_movement"></a>
+<a id="cursor_moving"></a>
 
-##[[↑]](#top) Cursor movement
+##[[↑]](#top) Cursor Moving
 
 1. Basic
 
@@ -206,7 +228,7 @@ built-in commands
   | E   | move to end of `WORD` (spaces separated words) |
   | `<N>%` | jump to the N% part of current file, eg. `20%` |
 
-2. Advanced
+1. Advanced
 
   | Command  |  Action |
   | :------- | :-------- |
@@ -219,15 +241,6 @@ built-in commands
   | H   | HOME cursor, goto first line on screen |
   | L   | goto LAST line on screen |
   | M   | goto MIDDLE line on screen |
-
-  **Powerful but seldomly knowns**:
-
-  | Command  |  Action |
-  | :------- | :-------- |
-  | `f<CHAR>`  | find `CHAR` after cursor in current line, e.g. `fa`: jump to first `a` in current line, `3fa` jumps to the 3rd `a` |
-  | `F<CHAR>`  | find `CHAR` before cursor in current line |
-  | ; | repeat last `f`, `F`, `t`, `T` command |
-  | g; | go the last changed/edited position |
 
   Moving/jumping by sentences, paragraphs,
 
@@ -245,9 +258,51 @@ built-in commands
 
   **Highly recommended!**
 
+1. **Powerful but seldomly knowns**
 
-<a id="Delete"></a>
+  `f/F` `t/T` jumps to the specified character in current line, in
+  forward/backward direction.
 
+  `;` and `,` repeat the last jumping, each in
+  forward and backward directions.
+
+  | Command  |  Action |
+  | :------- | :-------- |
+  | `f<CHAR>`  | find `CHAR` after cursor in current line, e.g. `fa`: jump to first `a` in current line, `3fa` jumps to the 3rd `a` |
+  | `F<CHAR>`  | find `CHAR` before cursor in current line |
+  | ; | repeat last `f`, `F`, `t`, `T` command, e.g, `fa;;` is equal to `3fa`, `fa;,` is equal to `2fa` |
+  | `t<CHAR>`  | similar with `f<CHAR>` but the cursor will be located before `CHAR` |
+  | `T<CHAR>`  | search backward |
+  | g; | go the last changed/edited position |
+
+  Combining with other operations, e.g.
+
+  * `df"`: **deleting util next `"` char**
+  * `cfl`: **changing/subtituting content util next `l` char**
+
+  Amazing! A whole new world emerges!
+
+<a id="screen_scroll"></a>
+##[[↑]](#top) Screen Scroll
+
+1. Basic
+
+  | Command  |  Action |
+  | :------- | :-------- |
+  | `ctl-u` | half page up |
+  | `ctl-d` | half page down |
+
+1. Advanced (**Cool!**)
+
+  | Command  |  Action |
+  | :------- | :-------- |
+  | `ctl-e` | one line up (Extra), same effect as `ctl-l` + `j` |
+  | `ctl-y` | one line down , same effect as `ctl-h` + `k`|
+
+  `ctl-e` and `ctl-y` move the screen content one line up/down, while
+  keeping the cursor still in its position.
+
+<a id="delete"></a>
 ##[[↑]](#top) Delete
 
 1. Basic
@@ -266,16 +321,27 @@ built-in commands
   | dG  | delete all lines after current line, including current line |
   | J   | join line below to the current line |
 
-<a id="Copy_Paste"></a>
+1. Advanced
+
+  | Command  |  Action |
+  | :------- | :-------- |
+  | daw | **delete a (the) word** under cursor, while `dw`/`db` only delete the right/left part of the word if cursor is at internal of a word |
+
+
+<a id="copy_paste"></a>
 
 ##[[↑]](#top) Copy/Paste
 
 1. Basic
 
+  `c` has been occupied in vim which stands for **Change**, so copy in vim
+  is denoted as `y`, short for **Yanking**.
+
   | Command  |  Action |
   | :------- | :-------- |
   | `yy` or `Y`   | copy current line |
-  | yw   | copy word |
+  | yw   | copy word, include white spaces after word |
+  | ye   | copy word, do not including white spaces |
   | y$   | copy from corsor to end of line |
   | p    | paste after line/cursor |
   | P   | paste before current line/cursor |
@@ -412,3 +478,7 @@ i # enter inserting mode
 1. [vi Complete Key Binding List](http://hea-www.harvard.edu/~fine/Tech/vi.html)
 
   Highly recommended!
+
+1. [VIM User Manual 1.9.0](http://vimdoc.sourceforge.net/vimum.html)
+
+  There are also [Chinese version](http://vimcdoc.sourceforge.net/).
