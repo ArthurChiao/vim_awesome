@@ -5,7 +5,7 @@ built-in commands
 
 1. [Save/Quit](#save_quit)
 1. [Code Folding](#code_folding)
-1. [Insert/Add](#Insert_Add)
+1. [Insert/Add](#insert_add)
 1. [Substitute/Replace](#substitute_replace)
 1. [Search/Find](#search_find)
 1. [Cursor Moving](#cursor_moving)
@@ -15,6 +15,7 @@ built-in commands
 1. [Undo/Redo](#Undo_Redo)
 1. [Vim Buffer](#buffer)
 1. [Vim Session](#session)
+1. [Split Window](#split_window)
 1. [Character Related](#char_related)
 1. [Misc](#misc)
 
@@ -57,7 +58,7 @@ built-in commands
 
 <a id="code_folding"></a>
 
-##[[↑]](#top) Code Folding (代码折叠）
+##[[↑]](#top) Code Folding
 
 1. Basic
 
@@ -118,7 +119,7 @@ built-in commands
   | z+ | page down |
   | z. | redraw window, put current line in the middle of the screen |
 
-<a id="Insert_Add"></a>
+<a id="insert_add"></a>
 
 ##[[↑]](#top) Insert/Add
 
@@ -326,6 +327,7 @@ built-in commands
   | Command  |  Action |
   | :------- | :-------- |
   | daw | **delete a (the) word** under cursor, while `dw`/`db` only delete the right/left part of the word if cursor is at internal of a word |
+  | diw | same as `daw`, but white spaces will not be deleted |
 
 
 <a id="copy_paste"></a>
@@ -436,6 +438,58 @@ built-in commands
                       # folder recursively
   :cw # vim command, load all the appearances (line number and the line) in subwindow
   ```
+
+<a id="split_window"></a>
+##[[↑]](#top) Split Window
+
+1. Basic
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `:sp` or `:split` | split a new window, horizontally |
+  | `:vsp` or `:vsplit` | split a new window, vertically |
+  | `:only` | close all other windows |
+
+  Switch between windows:
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `ctl-w h` | jump to the left window |
+  | `ctl-w l` | jump to the right window |
+  | `ctl-w k` | jump to the up window |
+  | `ctl-w j` | jump to the bottom window |
+  | `ctl-w t` | jump to the **up most** window |
+  | `ctl-w b` | jump to the **bottom most** window |
+
+1. Advanced
+
+  A number could be prefixed before split command to specify the new window
+  height/width:
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `:30sp` or `:30split` | split a new window, horizontally, 30 lines in height |
+  | `:30vsp` or `:30vsplit` | split a new window, vertically, 30 lines in width |
+
+  Change window height:
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `ctl-w +` | increase windows height |
+  | `ctl-w -` | decrease windows height |
+  | `ctl-w _` | increase windows height to maximum |
+  | `<N> ctl-w +` | increase windows height by `<N>` lines |
+  | `<N>ctl-w _` | increase windows height to `<N>` lines |
+
+1. More Advanced
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `ctl-w H` | move current window to the left most window, full height |
+  | `ctl-w L` | move current window to the right most window, full height |
+  | `ctl-w K` | move current window to the up most window, full width |
+  | `ctl-w J` | move current window to the bottom most window, full width |
+
 
 <a id="char_related"></a>
 ##[[↑]](#top) Character Related
