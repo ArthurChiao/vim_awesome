@@ -15,6 +15,7 @@ built-in commands
 1. [Undo/Redo](#Undo_Redo)
 1. [Vim Buffer](#buffer)
 1. [Vim Session](#session)
+1. [Vim Diff](#vimdiff)
 1. [Split Window](#split_window)
 1. [Character Related](#char_related)
 1. [Misc](#misc)
@@ -50,9 +51,9 @@ built-in commands
 
  | Command  |  Action |
  | :-------- |  :--------- |
- | :w <filename> | save as another file |
- | :r <filename> | read text from file, append content after cursor |
- | ZZ | save then quit current file |
+ | `:w <filename>` | save as another file |
+ | `:r <filename>` | read text from file, append content after cursor |
+ | ZZ | save and quit current file |
  | :e | reload current file from disk, short for `:edit` |
  | :e! | reload current file from disk, discard current changes |
 
@@ -329,6 +330,11 @@ built-in commands
   | daw | **delete a (the) word** under cursor, while `dw`/`db` only delete the right/left part of the word if cursor is at internal of a word |
   | diw | same as `daw`, but white spaces will not be deleted |
 
+  If change `d` to `c`, the effect will be changing the word:
+
+  | caw | **change a (the) word** under cursor |
+  | ciw | same as `caw`, but white spaces will be skipped |
+
 
 <a id="copy_paste"></a>
 
@@ -390,9 +396,9 @@ built-in commands
 
   | Command | Action |
   | :------ | :-------- |
-  | :He   |  split window Horizontally, show directory at Below window |
-  | :He!  |  split window Horizontally, show directory at Upper window |
-  | :Ve   |  split window Vertically, show directory at Right window |
+  | :Hexplore   |  split window Horizontally, show directory at Below window |
+  | :Hexplore!  |  split window Horizontally, show directory at Upper window |
+  | :Vexplore   |  split window Vertically, show directory at Right window |
   | ctl+w h/j/k/l | move between windows, in left/down/up/righ direction |
   | `:set scb` or `:set scrollbind` | set scroll bind, type this command in two windows, then they will scroll synchronously |
   | `:set scb!` or `:set scrollbind!` | unset scroll bind |
@@ -418,8 +424,8 @@ built-in commands
   without having to remember all the error messages.
 
   In Vim the quickfix commands are used more generally to find a list of
-  positions in files.  For example, |:vimgrep| finds pattern matches.  You can
-  use the positions in a script with the |getqflist()| function.  Thus you can
+  positions in files.  For example, `:vimgrep` finds pattern matches.  You can
+  use the positions in a script with the `getqflist()` function.  Thus you can
   do a lot more than the edit/compile/fix cycle!
 
   ```shell
@@ -437,6 +443,32 @@ built-in commands
   grep -R test_func * # search all appearances of string `test_func` from current
                       # folder recursively
   :cw # vim command, load all the appearances (line number and the line) in subwindow
+  ```
+<a id="vimdiff"></a>
+##[[↑]](#top) Vim Diff
+
+1. Basic
+
+  Show difference of `<file`> and `<file2>`, in 2 vertical split windows:
+
+  ```
+  $ vimdiff <file1> <file2>
+  ```
+
+1. Advanced
+
+  Open a new file in horizontally/vertically window, diff with current file:
+  ```
+  $ vim <file1>
+
+  :diffsplit <file2>          # compare file2 with file1, in horizontally split window
+  :vertical diffsplit <file2> # compare file2 with file1, in vertically split window
+  ```
+
+  Update diff window (e.g. after changing the content of one file):
+
+  ```
+  :diffupdate
   ```
 
 <a id="split_window"></a>
@@ -490,6 +522,14 @@ built-in commands
   | `ctl-w K` | move current window to the up most window, full width |
   | `ctl-w J` | move current window to the bottom most window, full width |
 
+1. Tab Basic
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `:tabnew <file>` | open file in new tab |
+  | `gt` | go to next tab |
+  | `gT` | go to previous tab |
+  | `:tabonly` | close all other tabs |
 
 <a id="char_related"></a>
 ##[[↑]](#top) Character Related
