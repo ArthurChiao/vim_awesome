@@ -145,7 +145,20 @@ built-in commands
   | :-------- |  :--------- |
   | `ctl + v`  `I`   | `ctl + v` (block selection), `I` (insert before selected block)   |
   | :read `<file>` | read the specified file, insert content into current file |
-  | :read `<shell command>` | execute shell command, insert returned contents into current file |
+  | `:$read <file>` | append file to the end of current file |
+  | `:0read <file>` | pre-append file to the beginning of current file |
+  | `:<N1>,<N2>write` <file> | write text between line `<N1>` and `<N2>` to file, e.g. `:10,200w a.txt` |
+  | `:.,$write <file>` | write text from current line to the end to file |
+  | `:.write <file>` | write text of current line to file, e.g. `:.w a.txt` |
+  | `:.write >> <file>` | append text of current line to file, e.g. `:.w >> a.txt` |
+  | `:.,$write! <file>` | force to write it |
+
+1. Read/Write Advanced
+
+  | Command  |  Action |
+  | :-------- |  :--------- |
+  | `:read !<shell_command>` | execute shell command `<shell_command>>`, paste the result after cursor, e.g `:r !ls -ahl`, `:r !tree` |
+  | `:0read !<shell_command>` | insert context before beginning of current file |
 
 
 <a id="substitute_replace"></a>
