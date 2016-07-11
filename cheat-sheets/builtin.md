@@ -5,7 +5,7 @@ built-in commands
 
 1. [Save/Quit](#save_quit)
 1. [Code Folding](#code_folding)
-1. [Insert/Add](#Insert_Add)
+1. [Insert/Add](#insert_add)
 1. [Substitute/Replace](#substitute_replace)
 1. [Search/Find](#search_find)
 1. [Cursor Moving](#cursor_moving)
@@ -15,6 +15,8 @@ built-in commands
 1. [Undo/Redo](#Undo_Redo)
 1. [Vim Buffer](#buffer)
 1. [Vim Session](#session)
+1. [Vim Diff](#vimdiff)
+1. [Split Window](#split_window)
 1. [Character Related](#char_related)
 1. [Misc](#misc)
 
@@ -49,15 +51,15 @@ built-in commands
 
  | Command  |  Action |
  | :-------- |  :--------- |
- | :w <filename> | save as another file |
- | :r <filename> | read text from file, append content after cursor |
- | ZZ | save then quit current file |
+ | `:w <filename>` | save as another file |
+ | `:r <filename>` | read text from file, append content after cursor |
+ | ZZ | save and quit current file |
  | :e | reload current file from disk, short for `:edit` |
  | :e! | reload current file from disk, discard current changes |
 
 <a id="code_folding"></a>
 
-##[[↑]](#top) Code Folding (代码折叠）
+##[[↑]](#top) Code Folding
 
 1. Basic
 
@@ -118,7 +120,7 @@ built-in commands
   | z+ | page down |
   | z. | redraw window, put current line in the middle of the screen |
 
-<a id="Insert_Add"></a>
+<a id="insert_add"></a>
 
 ##[[↑]](#top) Insert/Add
 
@@ -326,6 +328,12 @@ built-in commands
   | Command  |  Action |
   | :------- | :-------- |
   | daw | **delete a (the) word** under cursor, while `dw`/`db` only delete the right/left part of the word if cursor is at internal of a word |
+  | diw | same as `daw`, but white spaces will not be deleted |
+
+  If change `d` to `c`, the effect will be changing the word:
+
+  | caw | **change a (the) word** under cursor |
+  | ciw | same as `caw`, but white spaces will be skipped |
 
 
 <a id="copy_paste"></a>
@@ -388,9 +396,9 @@ built-in commands
 
   | Command | Action |
   | :------ | :-------- |
-  | :He   |  split window Horizontally, show directory at Below window |
-  | :He!  |  split window Horizontally, show directory at Upper window |
-  | :Ve   |  split window Vertically, show directory at Right window |
+  | :Hexplore   |  split window Horizontally, show directory at Below window |
+  | :Hexplore!  |  split window Horizontally, show directory at Upper window |
+  | :Vexplore   |  split window Vertically, show directory at Right window |
   | ctl+w h/j/k/l | move between windows, in left/down/up/righ direction |
   | `:set scb` or `:set scrollbind` | set scroll bind, type this command in two windows, then they will scroll synchronously |
   | `:set scb!` or `:set scrollbind!` | unset scroll bind |
@@ -416,8 +424,8 @@ built-in commands
   without having to remember all the error messages.
 
   In Vim the quickfix commands are used more generally to find a list of
-  positions in files.  For example, |:vimgrep| finds pattern matches.  You can
-  use the positions in a script with the |getqflist()| function.  Thus you can
+  positions in files.  For example, `:vimgrep` finds pattern matches.  You can
+  use the positions in a script with the `getqflist()` function.  Thus you can
   do a lot more than the edit/compile/fix cycle!
 
   ```shell
@@ -436,6 +444,92 @@ built-in commands
                       # folder recursively
   :cw # vim command, load all the appearances (line number and the line) in subwindow
   ```
+<a id="vimdiff"></a>
+##[[↑]](#top) Vim Diff
+
+1. Basic
+
+  Show difference of `<file`> and `<file2>`, in 2 vertical split windows:
+
+  ```
+  $ vimdiff <file1> <file2>
+  ```
+
+1. Advanced
+
+  Open a new file in horizontally/vertically window, diff with current file:
+  ```
+  $ vim <file1>
+
+  :diffsplit <file2>          # compare file2 with file1, in horizontally split window
+  :vertical diffsplit <file2> # compare file2 with file1, in vertically split window
+  ```
+
+  Update diff window (e.g. after changing the content of one file):
+
+  ```
+  :diffupdate
+  ```
+
+<a id="split_window"></a>
+##[[↑]](#top) Split Window
+
+1. Basic
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `:sp` or `:split` | split a new window, horizontally |
+  | `:vsp` or `:vsplit` | split a new window, vertically |
+  | `:only` | close all other windows |
+
+  Switch between windows:
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `ctl-w h` | jump to the left window |
+  | `ctl-w l` | jump to the right window |
+  | `ctl-w k` | jump to the up window |
+  | `ctl-w j` | jump to the bottom window |
+  | `ctl-w t` | jump to the **up most** window |
+  | `ctl-w b` | jump to the **bottom most** window |
+
+1. Advanced
+
+  A number could be prefixed before split command to specify the new window
+  height/width:
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `:30sp` or `:30split` | split a new window, horizontally, 30 lines in height |
+  | `:30vsp` or `:30vsplit` | split a new window, vertically, 30 lines in width |
+
+  Change window height:
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `ctl-w +` | increase windows height |
+  | `ctl-w -` | decrease windows height |
+  | `ctl-w _` | increase windows height to maximum |
+  | `<N> ctl-w +` | increase windows height by `<N>` lines |
+  | `<N>ctl-w _` | increase windows height to `<N>` lines |
+
+1. More Advanced
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `ctl-w H` | move current window to the left most window, full height |
+  | `ctl-w L` | move current window to the right most window, full height |
+  | `ctl-w K` | move current window to the up most window, full width |
+  | `ctl-w J` | move current window to the bottom most window, full width |
+
+1. Tab Basic
+
+  | Command | Action |
+  | :------ | :-------- |
+  | `:tabnew <file>` | open file in new tab |
+  | `gt` | go to next tab |
+  | `gT` | go to previous tab |
+  | `:tabonly` | close all other tabs |
 
 <a id="char_related"></a>
 ##[[↑]](#top) Character Related
