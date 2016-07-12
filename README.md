@@ -198,9 +198,11 @@ here are some quick remedies:
 * `za` - toggle to open/close current folding
 * `zR` and `zM` - open/close all foldings in current file
 
-This is resulted by the default settings of `PythonMode` plugin. If you do not
+Or, **open the foldings with mouse**: click the `+` character on the left of each folding.
+
+The foldings are created by `PythonMode` plugin. If you do not
 like it, you could just remove it by deleting the
-`~/.vim_runtime/sources_forked/python-mode/` folder in your host, and restart vim.
+`~/.vim_runtime/sources_forked/python-mode/` folder on your host, and restart vim.
 However, i highly recommand you to get familir with this tool, which can
 accelerate your python developing by great extent.
 
