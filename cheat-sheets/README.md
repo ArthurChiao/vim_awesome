@@ -14,12 +14,13 @@ Chinese version may not be updated as frequently as this English version.
 1. [plugin](plugin.md)
 1. [code/text formating](formating.md)
 1. [vim custome settings](setting.md)
+1. [syntax highlight](syntax-highlight.md)
 
 -------------------
 
 ## other helpful skills
 
-1. switch between shell and vim (`ctl-z` 大法)
+1. switch between shell and vim (`ctl-z` + `fg`)
 
   If you are doing some code editing, debugging and testing work, i mean,
   edit files with vim -> exit vim -> test and run -> edit files again -> exit
