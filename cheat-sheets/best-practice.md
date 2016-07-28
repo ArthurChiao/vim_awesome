@@ -40,8 +40,15 @@ Best Practices
 
   | Command | Action | Comments |
   |:--------|:-------|:--------|
-  | `viB` or `vi{` | select contents inside current **curly braces** | real useful for C/C++ code |
+  | `viB` or `vi{` | select contents inside current **curly braces** | really useful for C/C++ code |
   | `vi"` and `vi'` | select contents inside current `""` and `''` | |
+
+1. back to last edited line/position
+
+  | Command | Action | Comments |
+  |:--------|:-------|:--------|
+  | `g;` | jump to last edited position | **excellent, finger-friendly**  |
+  | `'.` | jump to last edited line | **not finger-friendly** |
 
 # References
 1. [What Is Your Most Productive Shortcut With Vim](http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim)
