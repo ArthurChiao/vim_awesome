@@ -8,9 +8,12 @@ visual mode commands
 | v                 |  start character selection |
 | V or `shift + v`  |  start line selection |
 | `ctl + v`         |  start block selection |
-| `va"`             |  select texts between "" |
-| `va[`             |  select texts between [] |
-| `va{`             |  select texts between {} |
+| `vi"`             |  select texts inside "" |
+| `vi[`             |  select texts inside [] |
+| `vi{`             |  select texts inside {} |
+| `va"`             |  select texts between "", including double quotes `""` |
+| `va[`             |  select texts between [], including `[]` |
+| `va{`             |  select texts between {}, including `{}` |
 | `v%`              |  select texts until matching current punctuation (", [, {, etc), similar effetcs as `va` |
 
 ## combinations with visual mode

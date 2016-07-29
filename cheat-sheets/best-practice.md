@@ -3,15 +3,15 @@ Best Practices
 
 1. replace/delete in part of a file, using relative addressing
 
-  delete any lines containing string "foo" from current line through the
-  next 21 lines:
+  **delete any lines containing string "foo" from current line through the
+  next 21 lines**:
 
   ```shell
   :.,+21g/foo/d
   ```
 
-  from here to the end of the file, delete any lines that DON'T contain the
-  string "bar":
+  **from here to the end of the file, delete any lines that DON'T contain the
+  string "bar"**:
 
   ```shell
   :.,$v/bar/d
@@ -30,10 +30,20 @@ Best Practices
 
   --------
 
-  for every line containing "foo", substitute all "bar" with "zzz":
+  **for every line containing "foo", substitute all "bar" with "zzz"**:
 
   ```shell
   :% g/foo/s/bar/zzz/g
+  ```
+
+  **Print all lines containing string "heartbeat"**, similar as shell command
+  `grep heartbeat <this_file>`:
+
+  ```shell
+  :%g/heartbeat/p
+
+  # or more simply:
+  :g/heartbeat/p
   ```
 
 1. visual selection
@@ -41,7 +51,9 @@ Best Practices
   | Command | Action | Comments |
   |:--------|:-------|:--------|
   | `viB` or `vi{` | select contents inside current **curly braces** | really useful for C/C++ code |
-  | `vi"` and `vi'` | select contents inside current `""` and `''` | |
+  | `vi"` and `vi'` | select contents inside current `""` and `''` | `i: inside` |
+  | `va"` and `va'` | select contents between current `""` and `''`, including the quotes char | `a: all` |
+
 
 1. back to last edited line/position
 
