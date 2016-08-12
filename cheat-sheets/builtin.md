@@ -160,6 +160,12 @@ built-in commands
   | `:read !<shell_command>` | execute shell command `<shell_command>>`, paste the result after cursor, e.g `:r !ls -ahl`, `:r !tree` |
   | `:0read !<shell_command>` | insert context before beginning of current file |
 
+1. Special Commands in Inserting Mode
+
+  | Command  |  Action | Comments |
+  | :-------- |  :--------- | :------ |
+  | `ctl-w` | delete a WORD before cursor, like shell command `ctl-w` | same effect as `ESC` + `db` |
+  | `ctl-u` | delete all words before cursor, like shell command `ctl-u` |
 
 <a id="substitute_replace"></a>
 ##[[↑]](#top) Substitute/Replace
