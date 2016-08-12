@@ -6,6 +6,7 @@ Index:
 1. [Set List](#set_list)
 1. [Indent](#indent)
 1. [Bracket Matching](#bracket_matching)
+1. [gq: format text block](#gq)
 
 --------------
 
@@ -34,6 +35,25 @@ Index:
 
   If the character under cursor is not a bracket char,
   it will find the first one in forward direction.
+
+1. <a name="gq">`gq` - Format Text Block</a>
+
+  How to re-format text file to 75-chracter width:
+
+  ```shell
+  # 1. set target width
+  :set textwidth=75
+
+  # 2. visual select content of entire file
+  ggVG
+
+  # 3. re-format
+  gq
+  ```
+
+  Try it, fascinating!
+
+
 
 # References
 
