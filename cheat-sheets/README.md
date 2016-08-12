@@ -16,6 +16,7 @@ Chinese version may not be updated as frequently as this English version.
 1. [vim custome settings](setting.md)
 1. [syntax highlight](syntax-highlight.md)
 1. [best practice](best-practice.md)
+1. [special file editing](special-file-editing.md)
 
 -------------------
 
