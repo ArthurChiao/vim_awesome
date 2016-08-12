@@ -227,6 +227,17 @@ built-in commands
   :copen # open the window that lists all the search results
   ```
 
+1. Advanced Settings
+
+  ```shell
+  :set ignorecase
+  :set noignorecase
+
+  :set ignorecase smartcase # be case sensitive only if the keyword contains at
+                            # least one Upper case character
+                            # else be case insensitive
+  ```
+
 <a id="cursor_moving"></a>
 
 ##[[↑]](#top) Cursor Moving

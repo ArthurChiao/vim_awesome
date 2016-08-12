@@ -25,6 +25,14 @@ Index:
 
   Or, specify number of lines to indent:
   ```shell
+  :set shiftwidth=4 # set indent size
+
+  >>  # indent current line to right
+  <<  # indent current line to left
+
+  2>> # indent 2 lines (current line and 1 lines below) to right
+  4<< # indent 4 lines (current line and 3 lines below) to left
+
   >2j # indent current line and 2 lines below, to right
   <4k # indent current line and 4 lines above, to left
   ```
