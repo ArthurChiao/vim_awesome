@@ -167,6 +167,33 @@ built-in commands
   | `ctl-w` | delete a WORD before cursor, like shell command `ctl-w` | same effect as `ESC` + `db` |
   | `ctl-u` | delete all words before cursor, like shell command `ctl-u` |
 
+1. Insert `""` / `''` / `{}` / `[]` / `()` around code block
+
+  | Command  |  Action | Comments |
+  | :-------- |  :--------- | :------ |
+  | `$e` | add `""` between visual selected code block | |
+  | `$$` | same as `$e` ||
+  | `$q` | add `''` (single quotes) between visual selected code block | |
+  | `$1` | add `()` between visual selected code block | |
+  | `$2` | add `[]` between visual selected code block | |
+  | `$3` | add `{}` between visual selected code block | |
+
+  E.g. the following code:
+
+  ```python
+  print hello
+  ```
+
+  `fhve$e` turns it to `print "hello"`:
+
+  ```python
+  print "hello"
+  ```
+
+  Explanations: `fh` moves cursor to `h` of `hello`, `ve` visual selects word
+  `hello`, `$e` adds `""` around the word |
+
+
 <a id="substitute_replace"></a>
 ##[[↑]](#top) Substitute/Replace
 
@@ -583,18 +610,26 @@ built-in commands
 
   `:r` stands for **read**, `!` means to execute a shell command, `date` is a shell command.
 
------------
 
-从windows往vim (通过putty登录) 粘贴代码时，格式乱掉的解决办法: 在粘贴之前打开
-vim `paste`:
-```shell
-:set paste # turn on vim paste
+2. 从windows往vim (通过putty登录) 粘贴代码时，格式乱掉的解决办法: 在粘贴之前打开vim `paste`:
 
-i # enter inserting mode
-  # paste your content to vim (e.g. shift + RightClick in putty)
+  ```shell
+  :set paste # turn on vim paste
 
-:set nopaste # turn off vim paste
-```
+  i # enter inserting mode
+    # paste your content to vim (e.g. shift + RightClick in putty)
+
+  :set nopaste # turn off vim paste
+  ```
+
+  or use `:setlocal paste`, key bindings:
+
+  | Command | Action | Comments |
+  | :------ | :-------- |:----- |
+  | `<leader>pp` | set `paste` mode in current file | key binding `:setlocal paste!` |
+  | `<leader>x` | open tmp file `~/buffer.md` | key binding `:e ~/buffer.md` |
+  | `<leader>q` | open tmp file `~/buffer` | key binding `:e ~/buffer` |
+
 
 # References
 1. [vim无插件编程技巧](http://mp.weixin.qq.com/s?__biz=MjM5NzA1MTcyMA==&mid=200211176&idx=1&sn=8ef83ebad1938fd03acd424f0c18abb3&scene=2&from=timeline&isappinstalled=0#rd)

@@ -58,11 +58,15 @@ Here are some frequently used commands:
 | :------ | :-------- |
 | :Tagbar | toggle of tagbar |
 
-## Python Mode
+## 4. Python Mode
 
 `:Py` + TAB to show all commands starts with `Py`.
 
 | Command | Function |
 | :------ | :-------- |
 | :PyLint | run pylint |
+
+## 5. MRU
+
+`<leader>j`: List most recently used files
 
