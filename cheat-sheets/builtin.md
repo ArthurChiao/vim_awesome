@@ -184,14 +184,14 @@ built-in commands
   print hello
   ```
 
-  `fhve$e` turns it to `print "hello"`:
+  Command `fhve$e` turns it to `print "hello"`:
 
   ```python
   print "hello"
   ```
 
   Explanations: `fh` moves cursor to `h` of `hello`, `ve` visual selects word
-  `hello`, `$e` adds `""` around the word |
+  `hello`, `$e` adds `""` around the word.
 
 
 <a id="substitute_replace"></a>
@@ -389,6 +389,8 @@ built-in commands
 
   If change `d` to `c`, the effect will be changing the word:
 
+  | Command  |  Action |
+  | :------- | :-------- |
   | caw | **change a (the) word** under cursor |
   | ciw | same as `caw`, but white spaces will be skipped |
 
@@ -501,8 +503,9 @@ built-in commands
                       # folder recursively
   :cw # vim command, load all the appearances (line number and the line) in subwindow
   ```
+
 <a id="vimdiff"></a>
-##[[↑]](#top) Vim Diff
+## [[↑]](#top) Vim Diff
 
 1. Basic
 
