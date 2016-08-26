@@ -61,12 +61,16 @@ built-in commands
 
 ##[[↑]](#top) Code Folding
 
-1. Basic
+Large source files, e.g. thousands of lines, are inconvenient for reading.
+Code folding can be a great help on this point.
 
-  ```shell
-  # set folding by indent:
-  :setlocal foldmethod=indent
-  ```
+It is convenient to temporarily fold away (hide) parts of your file,
+leaving only an outline of the major parts visible. This is what folding does.
+
+  * **For C/C++ files** `:set foldmethod=syntax` (or use `setlocal`: `:setlocal foldmethod=syntax`, same for below)
+  * **For Python files** `:set foldmethod=indent`
+
+1. Basic
 
   | Command | Action |
   | :-------- |  :--------- |

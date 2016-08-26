@@ -110,7 +110,19 @@ inoremap $t <><esc>i
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General abbreviations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+iab xdate <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
+
+" insert pdb line
+iab xpdb  import pdb; pdb.set_trace()<esc>
+
+" simplest c program
+iab xc    #include<stdio.h><cr>#include<stdlib.h><cr><cr>int main(int argc, char *argv[])<cr>{<cr>return 0;<cr>}<esc>
+
+" xccl: c comment line
+iab xccl   /*************************************************************************/<esc>
+
+" python main
+iab xpy   import sys<cr><cr>if __name__ == '__main__':<cr>pass<esc>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
