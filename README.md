@@ -58,7 +58,6 @@ $ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
 $ cd vim_awesome
 
 $ ./install.sh
-$ ./uninstall.sh
 ```
 
 ## Custome Install
@@ -86,6 +85,12 @@ $ sh ~/.vim_runtime/install_awesome_vimrc.sh
 $ ./update.sh
 ```
 This will update your vim configuration to the lasted `vim_awesome`.
+
+## Uninstall
+```shell
+$ ./uninstall.sh
+```
+This will remove vim_awesome and restore vim to your previous configuration.
 
 
 ## Dependencies
@@ -152,9 +157,6 @@ https://github.com/Shougo/neocomplete.vim.git
   ```
   restart the vim.
   
-  Or, you can use `neocomplcache`, an alternative to `neocomplete`. Enable this
-  plugin by opening the flag in `~/.vim_runtime/vimrcs/plugins_config.vim`:
-
 1. CentOS
 
   Most likely, you need to [compile vim74 from source](http://www.fullybaked.co.uk/articles/installing-latest-vim-on-centos-from-source) to get lua enabled:
@@ -173,13 +175,6 @@ https://github.com/Shougo/neocomplete.vim.git
   ```
   Test with `:echo has("lua")`, should return 1.
   
-  ```shell
-  " enable neocomplcache
-  " this is an alternative word-completion plugin if you can not use
-  " neocomplete, which needs lua enabled
-  let g:neocomplcache_enable_at_startup = 1 # enable this flag
-  ```
-
 ## 2. can not load custom colorschemes on windows
 
 If your `vim` on windows can not load the colorschemes in `~/.vim_runtime/colors`,

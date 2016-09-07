@@ -122,6 +122,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_theme="luna"
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,31 +133,15 @@ nnoremap <silent> <leader>z :Goyo<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => taglist
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <F8> :TlistToggle<cr>
-let g:Tlist_Use_Right_Window = 1
-let g:Tlist_Show_One_File = 1
-let g:Tlist_File_Fold_Auto_Close = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic (syntax checker)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_python_checkers=['pyflakes']
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => neocomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:neocomplete#enable_at_startup = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => neocomplcache
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" enable neocomplcache
-" this is an alternative word-completion plugin if you can not use
-" neocomplete, which needs lua enabled
-" let g:neocomplcache_enable_at_startup = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -166,6 +151,7 @@ let g:neocomplete#enable_at_startup = 1
 " close scratch preview (window for python code-completion) after finish
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => PythonMode
