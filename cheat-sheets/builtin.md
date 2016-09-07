@@ -67,8 +67,8 @@ Code folding can be a great help on this point.
 It is convenient to temporarily fold away (hide) parts of your file,
 leaving only an outline of the major parts visible. This is what folding does.
 
-  * **For C/C++ files** `:set foldmethod=syntax` (or use `setlocal`: `:setlocal foldmethod=syntax`, same for below)
-  * **For Python files** `:set foldmethod=indent`
+  * **For C/C++/JavaScript files** `:set foldmethod=syntax` (or use `setlocal`: `:setlocal foldmethod=syntax`, same for below)
+  * **For Python/HTML files** `:set foldmethod=indent`
 
 1. Basic
 
