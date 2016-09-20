@@ -3,11 +3,19 @@ Syntax Hightlight
 
 1. set syntax language for current file
 
-  ```shell
-  :set syntax=<language>
+  Show syntax/filetype used for current file:
 
-  #examples
+  ```shell
+  :set syntax
+  :set filetype
+  ```
+
+  Set syntax/filetype for current file:
+
+  ```shell
+  # set one of the following parameter to highlight current file
   :set syntax=erlang
+  :set filetype=erlang
   ```
 
 # References
