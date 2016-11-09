@@ -112,8 +112,9 @@ inoremap $t <><esc>i
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 
-" insert pdb line
+" insert pdb/ipdb line
 iab xpdb  import pdb; pdb.set_trace()<esc>
+iab xipdb  import ipdb; ipdb.set_trace()<esc>
 
 " simplest c program
 iab xc    #include<stdio.h><cr>#include<stdlib.h><cr><cr>int main(int argc, char *argv[])<cr>{<cr>return 0;<cr>}<esc>
