@@ -18,6 +18,7 @@ Chinese version may not be updated as frequently as this English version.
 1. [best practice](best-practice.md)
 1. [special file editing](special-file-editing.md)
 1. [abbreviations](abbrev.md)
+1. [vim settings in source file](settings-in-source-file.md)
 
 -------------------
 
