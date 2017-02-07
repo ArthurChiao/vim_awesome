@@ -89,7 +89,7 @@ function! airline#init#sections()
     let g:airline_section_a = airline#section#create_left(['mode', 'paste', 'iminsert'])
   endif
   if !exists('g:airline_section_b')
-    let g:airline_section_b = airline#section#create(['hunks', 'branch'])
+    let g:airline_section_b = '' " airline#section#create(['hunks', 'branch'])
   endif
   if !exists('g:airline_section_c')
     let g:airline_section_c = airline#section#create(['%<', 'file', spc, 'readonly'])
@@ -98,13 +98,13 @@ function! airline#init#sections()
     let g:airline_section_gutter = airline#section#create(['%='])
   endif
   if !exists('g:airline_section_x')
-    let g:airline_section_x = airline#section#create_right(['tagbar', 'filetype'])
+    let g:airline_section_x = '' " airline#section#create_right(['tagbar', 'filetype'])
   endif
   if !exists('g:airline_section_y')
-    let g:airline_section_y = airline#section#create_right(['ffenc'])
+    let g:airline_section_y = '' " airline#section#create_right(['ffenc'])
   endif
   if !exists('g:airline_section_z')
-    let g:airline_section_z = airline#section#create(['%3p%%'.spc, 'linenr', ':%3c '])
+    let g:airline_section_z = airline#section#create(['%p%%'.spc, 'linenr', ':%c '])
   endif
   if !exists('g:airline_section_warning')
     let g:airline_section_warning = airline#section#create(['syntastic', 'eclim', 'whitespace'])
