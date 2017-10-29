@@ -160,3 +160,8 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_on_fly = 0
 let g:pymode_rope = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-go
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:go_version_warning = 0
