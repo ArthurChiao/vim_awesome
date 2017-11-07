@@ -9,7 +9,7 @@ backup_dir=~/..vimback # with two leading dots to distinguish it from vim
 echo "[1] backing up old configurations ..."
 if [ -d $backup_dir ]; then
     echo "$backup_dir already exists, refresh it"
-    rm $backup_dir -rf
+    rm -rf $backup_dir
 fi
 
 mkdir $backup_dir
@@ -20,5 +20,5 @@ echo ""
 
 # step.2. install
 echo "[2] install new configurations ..."
-cp .vim_runtime ~ -rf && sh ~/.vim_runtime/install_awesome_vimrc.sh
+cp -rf .vim_runtime ~ && sh ~/.vim_runtime/install_awesome_vimrc.sh
 echo "install finish"
