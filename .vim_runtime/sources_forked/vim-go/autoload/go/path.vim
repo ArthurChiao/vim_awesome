@@ -179,7 +179,7 @@ function! go#path#CheckBinPath(binpath) abort
   " just get the basename
   let basename = fnamemodify(binpath, ":t")
   if !executable(basename)
-    call go#util#EchoError(printf("could not find '%s'. Run :GoInstallBinaries to fix it", basename))
+    " call go#util#EchoError(printf("could not find '%s'. Run :GoInstallBinaries to fix it", basename))
 
     " restore back!
     let $PATH = old_path
