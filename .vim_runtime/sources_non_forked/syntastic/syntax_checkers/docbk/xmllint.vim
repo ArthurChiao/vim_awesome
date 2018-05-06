@@ -1,6 +1,6 @@
 "============================================================================
 "File:        docbk.vim
-"Description: Syntax checking plugin for syntastic.vim
+"Description: Syntax checking plugin for syntastic
 "Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
 "License:     This program is free software. It comes without any warranty,
 "             to the extent permitted by applicable law. You can redistribute
@@ -10,16 +10,14 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_docbk_xmllint_checker")
+if exists('g:loaded_syntastic_docbk_xmllint_checker')
     finish
 endif
 let g:loaded_syntastic_docbk_xmllint_checker = 1
-
-runtime! syntax_checkers/xml/*.vim
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'docbk',
     \ 'name': 'xmllint',
     \ 'redirect': 'xml/xmllint'})
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

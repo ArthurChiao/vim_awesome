@@ -14,37 +14,56 @@ if exists('g:loaded_syntastic_javascript_eslint_checker')
 endif
 let g:loaded_syntastic_javascript_eslint_checker = 1
 
-if !exists('g:syntastic_javascript_eslint_conf')
-    let g:syntastic_javascript_eslint_conf = ''
+if !exists('g:syntastic_javascript_eslint_sort')
+    let g:syntastic_javascript_eslint_sort = 1
+endif
+
+if !exists('g:syntastic_javascript_eslint_generic')
+    let g:syntastic_javascript_eslint_generic = 0
 endif
 
 let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_javascript_eslint_IsAvailable() dict
-    return
-        \ executable('eslint') &&
-        \ syntastic#util#versionIsAtLeast(syntastic#util#getVersion('eslint --version'), [0, 1])
+    if g:syntastic_javascript_eslint_generic
+        call self.log('generic eslint, exec =', self.getExec())
+    endif
+
+    if !executable(self.getExec())
+        return 0
+    endif
+    return g:syntastic_javascript_eslint_generic || syntastic#util#versionIsAtLeast(self.getVersion(), [0, 1])
 endfunction
 
 function! SyntaxCheckers_javascript_eslint_GetLocList() dict
-    let makeprg = self.makeprgBuild({
-        \ 'args_before': '-f compact',
-        \ 'args': (g:syntastic_javascript_eslint_conf != '' ?
-        \       '--config ' . syntastic#util#shexpand(g:syntastic_javascript_eslint_conf) : '') })
+    if !g:syntastic_javascript_eslint_generic
+        call syntastic#log#deprecationWarn('javascript_eslint_conf', 'javascript_eslint_args',
+            \ "'--config ' . syntastic#util#shexpand(OLD_VAR)")
+    endif
+
+    let makeprg = self.makeprgBuild({ 'args_before': (g:syntastic_javascript_eslint_generic ? '' : '-f compact') })
 
     let errorformat =
-        \ '%E%f: line %l\, col %c\, Error - %m'
+        \ '%E%f: line %l\, col %c\, Error - %m,' .
+        \ '%W%f: line %l\, col %c\, Warning - %m'
 
     let loclist = SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat })
+        \ 'errorformat': errorformat,
+        \ 'postprocess': ['guards'] })
 
-    for e in loclist
-        let e['col'] += 1
-    endfor
+    if !g:syntastic_javascript_eslint_generic
+        if !exists('s:eslint_new')
+            let s:eslint_new = syntastic#util#versionIsAtLeast(self.getVersion(), [1])
+        endif
 
-    call self.setWantSort(1)
+        if !s:eslint_new
+            for e in loclist
+                let e['col'] += 1
+            endfor
+        endif
+    endif
 
     return loclist
 endfunction
@@ -56,4 +75,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

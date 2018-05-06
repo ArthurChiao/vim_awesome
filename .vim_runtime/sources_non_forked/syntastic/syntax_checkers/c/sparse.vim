@@ -1,6 +1,6 @@
 "============================================================================
 "File:        sparse.vim
-"Description: Syntax checking plugin for syntastic.vim using sparse.pl
+"Description: Syntax checking plugin for syntastic using sparse.pl
 "Maintainer:  Daniel Walker <dwalker at fifo99 dot com>
 "License:     This program is free software. It comes without any warranty,
 "             to the extent permitted by applicable law. You can redistribute
@@ -8,38 +8,31 @@
 "             Want To Public License, Version 2, as published by Sam Hocevar.
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "============================================================================
-"
-" The setting 'g:syntastic_sparse_config_file' allows you to define a file
-" that contains additional compiler arguments like include directories or
-" CFLAGS. The file is expected to contain one option per line. If none is
-" given the filename defaults to '.syntastic_sparse_config':
-"
-"   let g:syntastic_sparse_config_file = '.config'
 
-if exists("g:loaded_syntastic_c_sparse_checker")
+if exists('g:loaded_syntastic_c_sparse_checker')
     finish
 endif
 let g:loaded_syntastic_c_sparse_checker = 1
-
-if !exists('g:syntastic_sparse_config_file')
-    let g:syntastic_sparse_config_file = '.syntastic_sparse_config'
-endif
 
 let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_c_sparse_GetLocList() dict
+    let buf = bufnr('')
+
     let makeprg = self.makeprgBuild({
-        \ 'args': syntastic#c#ReadConfig(g:syntastic_sparse_config_file),
+        \ 'args': syntastic#c#ReadConfig(syntastic#util#bufVar(buf, 'sparse_config_file')),
         \ 'args_after': '-ftabstop=' . &ts })
 
-    let errorformat = '%f:%l:%v: %trror: %m,%f:%l:%v: %tarning: %m,'
+    let errorformat =
+        \ '%f:%l:%v: %trror: %m,' .
+        \ '%f:%l:%v: %tarning: %m,'
 
     let loclist = SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'defaults': {'bufnr': bufnr("")},
-        \ 'returns': [0] })
+        \ 'defaults': {'bufnr': bufnr('')},
+        \ 'returns': [0, 1] })
     return loclist
 endfunction
 
@@ -50,4 +43,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

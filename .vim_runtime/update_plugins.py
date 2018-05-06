@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding=utf-8
+
 import zipfile
 import shutil
 import tempfile
@@ -6,7 +9,7 @@ import requests
 from os import path
 
 
-#--- Globals ----------------------------------------------
+# --- Globals ----------------------------------------------
 PLUGINS = """
 ack.vim https://github.com/mileszs/ack.vim
 bufexplorer https://github.com/corntrace/bufexplorer
@@ -39,6 +42,7 @@ syntastic https://github.com/scrooloose/syntastic
 vim-repeat https://github.com/tpope/vim-repeat
 vim-commentary https://github.com/tpope/vim-commentary
 vim-golang https://github.com/jnwhiteh/vim-golang
+rust.vim https://github.com/rust-lang/rust.vim
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'

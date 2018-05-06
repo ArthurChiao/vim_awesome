@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_go_gotype_checker")
+if exists('g:loaded_syntastic_go_gotype_checker')
     finish
 endif
 let g:loaded_syntastic_go_gotype_checker = 1
@@ -19,7 +19,26 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_go_gotype_GetLocList() dict
-    let makeprg = self.getExecEscaped() . ' .'
+    let buf = bufnr('')
+
+    if !exists('s:go_new')
+        let command = syntastic#util#shescape(syntastic#util#bufVar(buf, 'go_go_exec', 'go')) . ' version'
+        let version_output = syntastic#util#system(command)
+        call self.log('finding go version: ' . string(command) . ': ' .
+            \ string(split(version_output, "\n", 1)) .
+            \ (v:shell_error ? ' (exit code ' . v:shell_error . ')' : ''))
+        let parsed_ver = syntastic#util#parseVersion(version_output)
+        if len(parsed_ver)
+            let s:go_new = syntastic#util#versionIsAtLeast(parsed_ver, [1, 8])
+        else
+            call syntastic#log#error("checker " . self.getCName() . ": can't parse go version (abnormal termination?)")
+            return []
+        endif
+    endif
+
+    let makeprg = self.makeprgBuild({
+        \ 'args': (bufname(buf) =~# '\m_test\.go$' ? (s:go_new ? '-t' : '-a') : ''),
+        \ 'fname': '.' })
 
     let errorformat =
         \ '%f:%l:%c: %m,' .
@@ -29,13 +48,11 @@ function! SyntaxCheckers_go_gotype_GetLocList() dict
     " the package for the same reasons specified in go.vim ("figuring out
     " the import path is fickle").
 
-    let errors = SyntasticMake({
+    return SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'cwd': expand('%:p:h'),
+        \ 'cwd': fnamemodify(bufname(buf), ':p:h'),
         \ 'defaults': {'type': 'e'} })
-
-    return errors
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
@@ -45,4 +62,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

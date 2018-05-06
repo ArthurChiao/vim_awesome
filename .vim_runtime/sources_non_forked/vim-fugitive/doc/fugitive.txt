@@ -40,6 +40,7 @@ that are part of Git repositories).
                         <CR>  |:Gedit|
                         -     |:Git| add
                         -     |:Git| reset (staged files)
+                        a     Show alternative format
                         cA    |:Gcommit| --amend --reuse-message=HEAD
                         ca    |:Gcommit| --amend
                         cc    |:Gcommit|
@@ -55,38 +56,67 @@ that are part of Git repositories).
                         p     |:Git| add --patch
                         p     |:Git| reset --patch (staged files)
                         q     close status
-                        R     reload status
+                        r     reload status
                         S     |:Gvsplit|
+                        U     |:Git| checkout
+                        U     |:Git| checkout HEAD (staged files)
+                        U     |:Git| clean (untracked files)
+                        U     |:Git| rm (unmerged files)
 
                                                 *fugitive-:Gcommit*
 :Gcommit [args]         A wrapper around git-commit.  If there is nothing
                         to commit, |:Gstatus| is called instead.  Unless the
                         arguments given would skip the invocation of an editor
                         (e.g., -m), a split window will be used to obtain a
-                        commit message.  Write and close that window (:wq or
-                        |:Gwrite|) to finish the commit.  Unlike when running
-                        the actual git-commit command, it is possible (but
-                        unadvisable) to muck with the index with commands like
-                        git-add and git-reset while a commit message is
-                        pending.
+                        commit message, or a new tab if -v is given.  Write
+                        and close that window (:wq or |:Gwrite|) to finish the
+                        commit.  Unlike when running the actual git-commit
+                        command, it is possible (but unadvisable) to alter the
+                        index with commands like git-add and git-reset while a
+                        commit message is pending.
+
+                                                *fugitive-:Gmerge*
+:Gmerge [args]          Calls git-merge and loads errors and conflicted files
+                        into the |quickfix| list.  Opens a |:Gcommit| style
+                        split window for the commit message if the merge
+                        succeeds.  If called during a merge conflict, the
+                        conflicted files from the current index are loaded
+                        into the |quickfix| list.
+
+                                                *fugitive-:Gpull*
+:Gpull [args]           Like |:Gmerge|, but for git-pull.
+
+                                                *fugitive-:Gpush*
+:Gpush [args]           Invoke git-push, load the results into the |quickfix|
+                        list, and invoke |:cwindow| to reveal any errors.
+                        |:Dispatch| is used if available for asynchronous
+                        invocation.
+
+                                                *fugitive-:Gfetch*
+:Gfetch [args]          Like |:Gpush|, but for git-fetch.
 
                                                 *fugitive-:Ggrep*
-:Ggrep [args]           |:grep| with git-grep as 'grepprg'.
+:Ggrep[!] [args]        |:grep|[!] with git-grep as 'grepprg'.
 
                                                 *fugitive-:Glgrep*
-:Glgrep [args]          |:lgrep| with git-grep as 'grepprg'.
+:Glgrep[!] [args]       |:lgrep|[!] with git-grep as 'grepprg'.
 
                                                 *fugitive-:Glog*
 :Glog [args]            Load all previous revisions of the current file into
-                        the quickfix list.  Additional git-log arguments can
+                        the |quickfix| list.  Additional git-log arguments can
                         be given (for example, --reverse).  If "--" appears as
                         an argument, no file specific filtering is done, and
                         previous commits rather than previous file revisions
                         are loaded.
 
+:{range}Glog [args]     Use git-log -L to load previous revisions of the given
+                        range of the current file into the |quickfix| list.
+                        The cursor is positioned on the first line of the
+                        first diff hunk for each commit.
+
                                                 *fugitive-:Gllog*
 :Gllog [args]           Like |:Glog|, but use the location list instead of the
-                        quickfix list.
+                        |quickfix| list.
 
                                         *fugitive-:Gedit* *fugitive-:Ge*
 :Gedit [revision]       |:edit| a |fugitive-revision|.
@@ -149,34 +179,46 @@ that are part of Git repositories).
                         index is used (which means a three-way diff during a
                         merge conflict, making it a git-mergetool
                         alternative).  The newer of the two files is placed
-                        to the right.  Use |do| and |dp| and write to the
-                        index file to simulate "git add --patch".
+                        to the right or bottom, depending on 'diffopt' and
+                        the width of the window relative to 'textwidth'.  Use
+                        |do| and |dp| and write to the index file to simulate
+                        "git add --patch". For the three-way diff, there is
+                        also d2o and d3o pulling the hunk to the middle from
+                        the left or the right window, respectively.
 
                                                 *fugitive-:Gsdiff*
-:Gsdiff [revision]      Like |:Gdiff|, but split horizontally.
+:Gsdiff [revision]      Like |:Gdiff|, but always split horizontally.
 
                                                 *fugitive-:Gvdiff*
-:Gvdiff [revision]      Identical to |:Gdiff|.  For symmetry with |:Gsdiff|.
+:Gvdiff [revision]      Like |:Gdiff|, but always split vertically.
 
                                                 *fugitive-:Gmove*
 :Gmove {destination}    Wrapper around git-mv that renames the buffer
                         afterward.  The destination is relative to the current
                         directory except when started with a /, in which case
-                        it is relative to the work tree.  Add a ! to pass -f.
+                        it is relative to the work tree.  (This is a holdover
+                        from before |:Grename| and will be removed.)  Add a !
+                        to pass -f.
 
-                                                *fugitive-:Gremove*
-:Gremove                Wrapper around git-rm that deletes the buffer
+                                                *fugitive-:Grename*
+:Grename {destination}  Like |:Gmove| but operates relative to the parent
+                        directory of the current file.
+
+                                                *fugitive-:Gdelete*
+:Gdelete                Wrapper around git-rm that deletes the buffer
                         afterward.  When invoked in an index file, --cached is
                         passed.  Add a ! to pass -f and forcefully discard the
                         buffer.
 
+                                                *fugitive-:Gremove*
+:Gremove                Like :Gdelete, but keep the (now empty) buffer around.
+
                                                 *fugitive-:Gblame*
 :Gblame [flags]         Run git-blame on the file and open the results in a
-                        scroll bound vertical split.  Press enter on a line to
-                        reblame the file as it was in that commit.  You can
-                        give any of ltfnsewMC as flags and they will be passed
-                        along to git-blame.  The following maps, which work on
-                        the cursor line commit where sensible, are provided:
+                        scroll bound vertical split.  You can give any of
+                        ltfnsewMC as flags and they will be passed along to
+                        git-blame.  The following maps, which work on the
+                        cursor line commit where sensible, are provided:
 
                         g?    show this help
                         A     resize to end of author column
@@ -194,31 +236,37 @@ that are part of Git repositories).
 :[range]Gblame [flags]  Run git-blame on the given range.
 
                                                 *fugitive-:Gbrowse*
-:[range]Gbrowse         If the remote for the current branch is on GitHub,
-                        open the current file, blob, tree, commit, or tag
-                        (with git-web--browse) on GitHub.  Otherwise, open the
-                        current file, blob, tree, commit, or tag in
-                        git-instaweb (if you have issues, verify you can run
-                        "git instaweb" from a terminal).  If a range is given,
-                        it is appropriately appended to the URL as an anchor.
+:Gbrowse                Open the current file, blob, tree, commit, or tag
+                        in your browser at the upstream hosting provider.
+                        If a range is given, it is appropriately appended to
+                        the URL as an anchor.
 
-                        To use with GitHub FI, point g:fugitive_github_domains
-                        at a list of domains:
->
-                        let g:fugitive_github_domains = ['https://example.com']
-~
-:[range]Gbrowse!        Like :Gbrowse, but put the URL on the clipboard rather
-                        than opening it.
+                        Upstream providers can be added by installing an
+                        appropriate Vim plugin.  For example, GitHub can be
+                        supported by installing rhubarb.vim, available at
+                        <https://github.com/tpope/vim-rhubarb>.
 
-:[range]Gbrowse {revision}
-                        Like :Gbrowse, but for a given |fugitive-revision|.  A
+                        The hosting provider is determined by looking at the
+                        remote for the current or specified branch and falls
+                        back to "origin".  In the special case of a "."
+                        remote, a local instance of git-instaweb will be
+                        started and used.
+
+:Gbrowse {revision}     Like :Gbrowse, but for a given |fugitive-revision|.  A
                         useful value here is -, which ties the URL to the
                         latest commit rather than a volatile branch.
 
-:[range]Gbrowse [...]@{remote}
-                        Force using the given remote rather than the remote
+:Gbrowse [...]@{remote} Force using the given remote rather than the remote
                         for the current branch.  The remote is used to
                         determine which GitHub repository to link to.
+
+:{range}Gbrowse [args]  Appends an anchor to the URL that emphasizes the
+                        selected lines.  You almost certainly want to give a
+                        "-" argument in this case to force the URL to include
+                        an exact revision.
+
+:[range]Gbrowse! [args] Like :Gbrowse, but put the URL on the clipboard rather
+                        than opening it.
 
 MAPPINGS                                        *fugitive-mappings*
 

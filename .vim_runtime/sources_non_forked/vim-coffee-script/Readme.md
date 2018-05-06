@@ -91,7 +91,7 @@ Updating takes two steps:
    set rtp+=~/.vim/bundle/vundle/
    call vundle#rc()
 
-   Bundle 'kchmck/vim-coffee-script'
+   Plugin 'kchmck/vim-coffee-script'
 
    syntax enable
    filetype plugin indent on
@@ -100,9 +100,9 @@ Updating takes two steps:
    If you're adding Vundle to a built-up vimrc, just make sure all these calls
    are in there and that they occur in this order.
 
-3. Open vim and run `:BundleInstall`.
+3. Open vim and run `:PluginInstall`.
 
-To update, open vim and run `:BundleInstall!` (notice the bang!)
+To update, open vim and run `:PluginInstall!` (notice the bang!)
 
 ## Install from a Zip File
 
@@ -313,7 +313,7 @@ the given `RANGE` and any extra `COFFEE-OPTIONS` are passed to `coffee`.
 
 ## CoffeeLint: Lint your CoffeeScript
 
-CoffeeLint runs [coffeelint](http://www.coffeelint.org/) (version 0.5.7 or later
+CoffeeLint runs [coffeelint](http://www.coffeelint.org/) (version 1.4.0 or later
 required) on the current file and adds any issues to the [quickfix] list.
 
   ![CoffeeLint](http://i.imgur.com/UN8Nr5N.png)
@@ -337,23 +337,15 @@ It behaves very similar to `:make`, described [above](#compile-to-javascript).
 
 ## Literate CoffeeScript
 
-Literate CoffeeScript syntax and indent support is provided by
-[vim-literate-coffeescript]. The `Coffee` commands detect when they're running
-on a litcoffee file and pass the `--literate` flag to their respective tools,
-but at this time the commands are not automatically loaded when a litcoffee file
-is opened.
+Literate CoffeeScript syntax and indent support is now built in! The `Coffee`
+commands detect when they're running on a litcoffee file and pass the
+`--literate` flag to their respective tools.
 
-[vim-literate-coffeescript]: https://github.com/mintplant/vim-literate-coffeescript
-
-To load them, run
-
-    runtime ftplugin/coffee.vim
-
-while inside a litcoffee buffer. To do this automatically, add
-
-    autocmd FileType litcoffee runtime ftplugin/coffee.vim
-
-to your vimrc.
+Literate CoffeeScript syntax and indent support was written by @mintplant
+(Michael Smith). A standalone repo
+[exists](https://github.com/jwhitley/vim-literate-coffeescript), but you'll
+need to copy the `ftplugin/litcoffee.vim` file or set up an autocmd to get the
+`Coffee` commands to be automatically loaded for litcoffee files.
 
 ## CoffeeScript in HTML
 

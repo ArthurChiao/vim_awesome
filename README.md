@@ -190,6 +190,7 @@ following,
 here are some quick remedies:
 
 * `za` - toggle to open/close current folding
+* `zr` and `zm` - open/close all first-level foldings in current file
 * `zR` and `zM` - open/close all foldings in current file
 
 Or, **open the foldings with mouse**: click the `+` character on the left of each folding.
@@ -201,6 +202,9 @@ However, i highly recommand you to get familir with this tool, which can
 accelerate your python developing by great extent.
 
 For more commands about code folding/unfolding, see [Cheat Sheets](cheat-sheets/builtin.md#code_folding).
+
+If your vim doesn't have python and python3 support, you may need run [recompile_vim.sh](recompile_vim.sh) to recompile vim with full python support.
+(Attention: only test on Ubuntu 16.04)
 
 <a name="cheat_sheets"></a>
 # Cheat sheet

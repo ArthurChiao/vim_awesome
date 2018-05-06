@@ -1,15 +1,7 @@
-" string.vim
 " @Author:      Tom Link (micathom AT gmail com?subject=[vim])
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
-" @Created:     2007-06-30.
-" @Last Change: 2009-02-15.
-" @Revision:    0.0.110
-
-if &cp || exists("loaded_tlib_string_autoload")
-    finish
-endif
-let loaded_tlib_string_autoload = 1
+" @Revision:    121
 
 
 " :def: function! tlib#string#RemoveBackslashes(text, ?chars=' ')
@@ -23,8 +15,10 @@ function! tlib#string#RemoveBackslashes(text, ...) "{{{3
 endf
 
 
-function! tlib#string#Chomp(string) "{{{3
-    return substitute(a:string, '[[:cntrl:][:space:]]*$', '', '')
+" :display: tlib#string#Chomp(string, ?max=0)
+function! tlib#string#Chomp(string, ...) "{{{3
+    let quant = a:0 >= 1 ? '\{,'. a:1 .'}' : '\+'
+    return substitute(a:string, '[[:cntrl:][:space:]]'. quant .'$', '', '')
 endf
 
 
@@ -152,5 +146,13 @@ endf
 
 function! s:CountHelper() "{{{3
     let s:count += 1
+endf
+
+
+function! tlib#string#SplitCommaList(text, ...) abort "{{{3
+    let sep = a:0 >= 1 ? a:1 : ',\s*'
+    let parts = split(a:text, '\\\@<!\zs'. sep)
+    let parts = map(parts, 'substitute(v:val, ''\\\(.\)'', ''\1'', ''g'')')
+    return parts
 endf
 

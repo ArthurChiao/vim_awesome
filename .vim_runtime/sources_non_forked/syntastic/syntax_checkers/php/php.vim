@@ -1,6 +1,6 @@
 "============================================================================
 "File:        php.vim
-"Description: Syntax checking plugin for syntastic.vim
+"Description: Syntax checking plugin for syntastic
 "Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
 "License:     This program is free software. It comes without any warranty,
 "             to the extent permitted by applicable law. You can redistribute
@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_php_php_checker")
+if exists('g:loaded_syntastic_php_php_checker')
     finish
 endif
 let g:loaded_syntastic_php_php_checker = 1
@@ -20,13 +20,13 @@ set cpo&vim
 
 function! SyntaxCheckers_php_php_GetHighlightRegex(item)
     let term = matchstr(a:item['text'], "\\munexpected '\\zs[^']\\+\\ze'")
-    return term != '' ? '\V' . escape(term, '\') : ''
+    return term !=# '' ? '\V' . escape(term, '\') : ''
 endfunction
 
 function! SyntaxCheckers_php_php_GetLocList() dict
     let makeprg = self.makeprgBuild({
         \ 'args': '-d error_reporting=E_ALL',
-        \ 'args_after': '-l -d display_errors=1 -d log_errors=0 -d xdebug.cli_color=0' })
+        \ 'args_after': '-l -d error_log= -d display_errors=1 -d log_errors=0 -d xdebug.cli_color=0' })
 
     let errorformat =
         \ '%-GNo syntax errors detected in%.%#,'.
@@ -38,7 +38,8 @@ function! SyntaxCheckers_php_php_GetLocList() dict
 
     return SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat })
+        \ 'errorformat': errorformat,
+        \ 'postprocess': ['guards'] })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
@@ -48,4 +49,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

@@ -28,11 +28,14 @@ if (!exists('g:snipMateSources'))
   let g:snipMateSources['default'] = funcref#Function('snipMate#DefaultPool')
 endif
 
-au BufRead,BufNewFile *.snippet set ft=snippet
-au FileType snippet setl noet nospell
-
-au BufRead,BufNewFile *.snippets set ft=snippets
-au FileType snippets setl noet nospell fdm=expr fde=getline(v:lnum)!~'^\\t\\\\|^$'?'>1':1
+augroup SnipMateDetect
+	au BufRead,BufNewFile *.snippet,*.snippets setlocal filetype=snippets
+	au FileType snippets if expand('<afile>:e') =~# 'snippet$'
+				\ | setlocal syntax=snippet
+				\ | else
+					\ | setlocal syntax=snippets
+					\ | endif
+augroup END
 
 inoremap <silent> <Plug>snipMateNextOrTrigger  <C-R>=snipMate#TriggerSnippet()<CR>
 snoremap <silent> <Plug>snipMateNextOrTrigger  <Esc>a<C-R>=snipMate#TriggerSnippet()<CR>
@@ -56,25 +59,44 @@ let g:snipMate['no_match_completion_feedkeys_chars'] =
 
 " Add default scope aliases, without overriding user settings
 let g:snipMate.scope_aliases = get(g:snipMate, 'scope_aliases', {})
-if !exists('g:snipMate_no_default_aliases') || !g:snipMate_no_default_aliases
-	let g:snipMate.scope_aliases.objc = get(g:snipMate.scope_aliases, 'objc', 'c')
-	let g:snipMate.scope_aliases.cpp = get(g:snipMate.scope_aliases, 'cpp', 'c')
-	let g:snipMate.scope_aliases.cu = get(g:snipMate.scope_aliases, 'cu', 'c')
-	let g:snipMate.scope_aliases.xhtml = get(g:snipMate.scope_aliases, 'xhtml', 'html')
-	let g:snipMate.scope_aliases.html = get(g:snipMate.scope_aliases, 'html', 'javascript')
-	let g:snipMate.scope_aliases.php = get(g:snipMate.scope_aliases, 'php', 'php,html,javascript')
-	let g:snipMate.scope_aliases.ur = get(g:snipMate.scope_aliases, 'ur', 'html,javascript')
-	let g:snipMate.scope_aliases.mxml = get(g:snipMate.scope_aliases, 'mxml', 'actionscript')
-	let g:snipMate.scope_aliases.eruby = get(g:snipMate.scope_aliases, 'eruby', 'eruby-rails,html')
+if exists('g:snipMate_no_default_aliases')
+	echom 'The g:snipMate_no_default_aliases option has been renamed.'
+				\ 'See :h snipMate-options.'
+endif
+if (!exists('g:snipMate_no_default_aliases') || !g:snipMate_no_default_aliases)
+			\ && (!exists('g:snipMate.no_default_aliases')
+				\ || !g:snipMate.no_default_aliases)
+	let g:snipMate.scope_aliases.objc =
+				\ get(g:snipMate.scope_aliases, 'objc', 'c')
+	let g:snipMate.scope_aliases.cpp =
+				\ get(g:snipMate.scope_aliases, 'cpp', 'c')
+	let g:snipMate.scope_aliases.cu =
+				\ get(g:snipMate.scope_aliases, 'cu', 'c')
+	let g:snipMate.scope_aliases.xhtml =
+				\ get(g:snipMate.scope_aliases, 'xhtml', 'html')
+	let g:snipMate.scope_aliases.html =
+				\ get(g:snipMate.scope_aliases, 'html', 'javascript')
+	let g:snipMate.scope_aliases.php =
+				\ get(g:snipMate.scope_aliases, 'php', 'php,html,javascript')
+	let g:snipMate.scope_aliases.ur =
+				\ get(g:snipMate.scope_aliases, 'ur', 'html,javascript')
+	let g:snipMate.scope_aliases.mxml =
+				\ get(g:snipMate.scope_aliases, 'mxml', 'actionscript')
+	let g:snipMate.scope_aliases.eruby =
+				\ get(g:snipMate.scope_aliases, 'eruby', 'eruby-rails,html')
+	let g:snipMate.scope_aliases.scss =
+				\ get(g:snipMate.scope_aliases, 'scss', 'css')
+	let g:snipMate.scope_aliases.less =
+				\ get(g:snipMate.scope_aliases, 'less', 'css')
 endif
 
 let g:snipMate['get_snippets'] = get(g:snipMate, 'get_snippets', funcref#Function("snipMate#GetSnippets"))
 
-" List of paths where snippets/ dirs are located, or a function returning such
-" a list
-let g:snipMate['snippet_dirs'] = get(g:snipMate, 'snippet_dirs', funcref#Function('return split(&runtimepath,",")'))
-if type(g:snipMate['snippet_dirs']) == type([])
-	call map(g:snipMate['snippet_dirs'], 'expand(v:val)')
+" List of paths where snippets/ dirs are located
+if exists('g:snipMate.snippet_dirs') && type(g:snipMate['snippet_dirs']) != type([])
+	echohl WarningMsg
+	echom "g:snipMate['snippet_dirs'] must be a List"
+	echohl None
 endif
 
 " _ is default scope added always
@@ -84,24 +106,25 @@ let g:snipMate['get_scopes'] = get(g:snipMate, 'get_scopes', funcref#Function('r
 
 " Modified from Luc Hermitte's function on StackOverflow
 " <http://stackoverflow.com/a/1534347>
-function! s:grab_visual()
+function! s:grab_visual() abort
 	let a_save = @a
 	try
 		normal! gv"ay
-		let b:snipmate_content_visual = @a
+		let b:snipmate_visual = @a
 	finally
 		let @a = a_save
 	endtry
 endfunction
 
-function! s:load_scopes(bang, ...)
+" TODO: Allow specifying an arbitrary snippets file
+function! s:load_scopes(bang, ...) abort
 	let gb = a:bang ? g: : b:
 	let gb.snipMate = get(gb, 'snipMate', {})
 	let gb.snipMate.scope_aliases = get(gb.snipMate, 'scope_aliases', {})
 	let gb.snipMate.scope_aliases['_'] = join(split(get(gb.snipMate.scope_aliases, '_', ''), ',') + a:000, ',')
 endfunction
 
-command! -bang -bar -nargs=+ SnipMateLoadScopes
+command! -bang -bar -nargs=+ SnipMateLoadScope
 			\ call s:load_scopes(<bang>0, <f-args>)
 
 " Edit snippet files

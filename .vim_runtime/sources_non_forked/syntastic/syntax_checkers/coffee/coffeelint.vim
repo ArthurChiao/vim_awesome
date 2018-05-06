@@ -1,6 +1,6 @@
 "============================================================================
 "File:        coffeelint.vim
-"Description: Syntax checking plugin for syntastic.vim
+"Description: Syntax checking plugin for syntastic
 "Maintainer:  Lincoln Stoll <l@lds.li>
 "License:     This program is free software. It comes without any warranty,
 "             to the extent permitted by applicable law. You can redistribute
@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_coffee_coffeelint_checker")
+if exists('g:loaded_syntastic_coffee_coffeelint_checker')
     finish
 endif
 let g:loaded_syntastic_coffee_coffeelint_checker = 1
@@ -19,19 +19,19 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_coffee_coffeelint_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args_after': '--csv' })
+    if !exists('s:coffeelint_new')
+        let s:coffeelint_new = syntastic#util#versionIsAtLeast(self.getVersion(), [1, 4])
+    endif
+    let makeprg = self.makeprgBuild({ 'args_after': (s:coffeelint_new ? '--reporter csv' : '--csv') })
 
-    let errorformat =
-        \ '%f\,%l\,%\d%#\,%trror\,%m,' .
-        \ '%f\,%l\,%trror\,%m,' .
-        \ '%f\,%l\,%\d%#\,%tarn\,%m,' .
-        \ '%f\,%l\,%tarn\,%m'
+    let errorformat = '%f:%l:%t:%m'
 
     return SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
         \ 'subtype': 'Style',
-        \ 'returns': [0, 1] })
+        \ 'returns': [0, 1],
+        \ 'preprocess': 'coffeelint' })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
@@ -41,4 +41,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

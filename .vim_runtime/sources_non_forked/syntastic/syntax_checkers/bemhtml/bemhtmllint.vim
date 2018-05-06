@@ -1,6 +1,6 @@
 "============================================================================
 "File:        bemhtmllint.vim
-"Description: Syntax checking plugin for syntastic.vim
+"Description: Syntax checking plugin for syntastic
 "Maintainer:  Sergej Tatarincev <s.tatarincev at yandex.ua>
 "License:     This program is free software. It comes without any warranty,
 "             to the extent permitted by applicable law. You can redistribute
@@ -8,8 +8,8 @@
 "             Want To Public License, Version 2, as published by Sam Hocevar.
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "============================================================================
-"
-if exists("g:loaded_syntastic_bemhtml_bemhtmllint_checker")
+
+if exists('g:loaded_syntastic_bemhtml_bemhtmllint_checker')
     finish
 endif
 
@@ -29,6 +29,7 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'name': 'bemhtmllint',
     \ 'exec': 'bemhtml-lint' })
 
-
 let &cpo = s:save_cpo
 unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

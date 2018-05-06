@@ -9,9 +9,9 @@ endif
 
 runtime! ftplugin/html.vim ftplugin/html_*.vim ftplugin/html/*.vim
 
-setlocal comments=fb:*,fb:-,fb:+,n:> commentstring=>\ %s
+setlocal comments=fb:*,fb:-,fb:+,n:> commentstring=<!--%s-->
 setlocal formatoptions+=tcqln formatoptions-=r formatoptions-=o
-setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+
+setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+\\\|^\\[^\\ze[^\\]]\\+\\]:
 
 if exists('b:undo_ftplugin')
   let b:undo_ftplugin .= "|setl cms< com< fo< flp<"
@@ -41,10 +41,35 @@ function! MarkdownFold()
   return "="
 endfunction
 
+function! MarkdownFoldText()
+  let hash_indent = s:HashIndent(v:foldstart)
+  let title = substitute(getline(v:foldstart), '^#\+\s*', '', '')
+  let foldsize = (v:foldend - v:foldstart + 1)
+  let linecount = '['.foldsize.' lines]'
+  return hash_indent.' '.title.' '.linecount
+endfunction
+
+function! s:HashIndent(lnum)
+  let hash_header = matchstr(getline(a:lnum), '^#\{1,6}')
+  if len(hash_header) > 0
+    " hashtag header
+    return hash_header
+  else
+    " == or -- header
+    let nextline = getline(a:lnum + 1)
+    if nextline =~ '^=\+\s*$'
+      return repeat('#', 1)
+    elseif nextline =~ '^-\+\s*$'
+      return repeat('#', 2)
+    endif
+  endif
+endfunction
+
 if has("folding") && exists("g:markdown_folding")
   setlocal foldexpr=MarkdownFold()
   setlocal foldmethod=expr
-  let b:undo_ftplugin .= " foldexpr< foldmethod<"
+  setlocal foldtext=MarkdownFoldText()
+  let b:undo_ftplugin .= " foldexpr< foldmethod< foldtext<"
 endif
 
 " vim:set sw=2:

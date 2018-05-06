@@ -156,10 +156,12 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => PythonMode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" disable auto lint, it is slow for large projects
-let g:pymode_lint_on_write = 0
-let g:pymode_lint_on_fly = 0
-let g:pymode_rope = 0
+" set auto lint
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_rope = 1
+" use python as default setting 
+let g:pymode_python = 'python'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-go

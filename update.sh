@@ -30,9 +30,11 @@ fi
 # fi
 
 # update
-git co .
+git checkout master
 git pull --rebase
 
 ./install.sh
+.vim_runtime/update_plugins.py
+
 echo ""
 echo "Update successful"
