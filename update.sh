@@ -30,12 +30,15 @@ fi
 # fi
 
 # update
-git checkout .
-git checkout master
-git pull --rebase
-
-./install.sh
-.vim_runtime/update_plugins.py
 
 echo ""
+read -p "Only update plugins? [Y/n] " choice
+if [ "$choice" != "Y" -a "$choice" != "y" ]; then
+    git checkout .
+    git checkout master
+    git pull --rebase
+fi
+
+./install.sh
+
 echo "Update successful"

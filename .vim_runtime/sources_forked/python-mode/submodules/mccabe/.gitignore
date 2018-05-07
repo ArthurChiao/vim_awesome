@@ -1,5 +1,0 @@
-*.egg
-*.egg-info
-*.py[cod]
-.tox
-dist

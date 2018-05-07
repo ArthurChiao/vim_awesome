@@ -6,6 +6,7 @@ vim_awesome
 1. [About](#about)
 1. [Supported Platforms](#supported_platforms)
 1. [Install and Update](#install)
+1. [Plugin Management](#plugins)
 1. [FAQ](#faq)
 1. [Cheat Sheets](#cheat_sheets)
 
@@ -129,6 +130,26 @@ errors at the configuration file `error: at line xxx in file xxx`.
 
     `neocomplete` needs lua enabled when gvim is compiled. Otherwise, it doesn't
     work (but reports no errors).
+
+<a name="plugins"></a>
+# Plugins Management
+`vim_awesome` uses pathogen to manage plugins, by which you could easily config
+your plugs in [plugins.config](./plugins.config).
+
+Example of config goes like:
+```
+ZIP ack.vim https://github.com/mileszs/ack.vim master
+ZIP bufexplorer https://github.com/corntrace/bufexplorer master
+ZIP ctrlp.vim https://github.com/kien/ctrlp.vim master
+ZIP mayansmoke https://github.com/vim-scripts/mayansmoke master
+GIT nerdtree https://github.com/scrooloose/nerdtree master
+```
+
+`ZIP` and `GIT` indicate the way you want to download and update your plugin.
+Followings are `plugin name`, `github url` and `branch name`.
+
+More information is available in [plugins.config](./plugins.config).
+
 
 <a name="faq"></a>
 # FAQ

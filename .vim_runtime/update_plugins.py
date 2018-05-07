@@ -6,53 +6,57 @@ import shutil
 import tempfile
 import requests
 
-from os import path
+from os import path, system
 
 
 # --- Globals ----------------------------------------------
-PLUGINS = """
-ack.vim https://github.com/mileszs/ack.vim
-bufexplorer https://github.com/corntrace/bufexplorer
-ctrlp.vim https://github.com/kien/ctrlp.vim
-mayansmoke https://github.com/vim-scripts/mayansmoke
-nerdtree https://github.com/scrooloose/nerdtree
-nginx.vim https://github.com/vim-scripts/nginx.vim
-open_file_under_cursor.vim https://github.com/amix/open_file_under_cursor.vim
-snipmate-snippets https://github.com/scrooloose/snipmate-snippets
-taglist.vim https://github.com/vim-scripts/taglist.vim
-tlib https://github.com/vim-scripts/tlib
-vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils
-vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
-vim-coffee-script https://github.com/kchmck/vim-coffee-script
-vim-colors-solarized https://github.com/altercation/vim-colors-solarized
-vim-indent-object https://github.com/michaeljsmith/vim-indent-object
-vim-less https://github.com/groenewege/vim-less
-vim-markdown https://github.com/tpope/vim-markdown
-vim-pyte https://github.com/therubymug/vim-pyte
-vim-snipmate https://github.com/garbas/vim-snipmate
-vim-snippets https://github.com/honza/vim-snippets
-vim-surround https://github.com/tpope/vim-surround
-vim-expand-region https://github.com/terryma/vim-expand-region
-vim-multiple-cursors https://github.com/terryma/vim-multiple-cursors
-vim-fugitive https://github.com/tpope/vim-fugitive
-vim-airline https://github.com/vim-airline/vim-airline
-vim-airline-themes https://github.com/vim-airline/vim-airline-themes
-goyo.vim https://github.com/junegunn/goyo.vim
-vim-zenroom2 https://github.com/amix/vim-zenroom2
-syntastic https://github.com/vim-syntastic/syntastic
-vim-repeat https://github.com/tpope/vim-repeat
-vim-commentary https://github.com/tpope/vim-commentary
-vim-go https://github.com/fatih/vim-go
-rust.vim https://github.com/rust-lang/rust.vim
-python-mode https://github.com/python-mode/python-mode
-""".strip()
+GITHUB_ZIP = '%s/archive/%s.zip'
+GITHUB_GIT = '%s.git'
 
-GITHUB_ZIP = '%s/archive/master.zip'
+GIT_CLONE_CMD = 'git clone -b %s --recursive %s %s'
+GIT_CHECKOUT_CMD = 'git -C %s checkout -b %s'
+GIT_PULL_CMD = 'git -C %s pull --recurse-submodules'
 
-SOURCE_DIR = path.join(path.dirname(__file__), 'sources_non_forked')
+SOURCE_DIR = path.join(
+    path.expandvars('$HOME'),
+    '.vim_runtime/sources_non_forked')
+
+CONFIG_FILE = path.join(path.dirname(__file__), 'plugins.config')
 
 
-def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
+def git_system(cmd, plugin_bar):
+    if system(cmd) != 0:
+        print 'Failed %s' % plugin_bar
+    else:
+        print 'Updated %s' % plugin_bar
+
+
+def download_git_clone(plugin_name, github_url, branch_name, source_dir):
+    git_path = GITHUB_GIT % github_url
+    plugin_dest_path = path.join(source_dir, plugin_name)
+    plugin_bar = "%s-%s" % (plugin_name, branch_name)
+
+    if path.exists(path.join(plugin_dest_path, '.git')):
+        # Git checkout on target branch
+        cmd = GIT_CHECKOUT_CMD % (plugin_dest_path, branch_name)
+        git_system(cmd, plugin_bar)
+        # Git pull to update plugins
+        cmd = GIT_PULL_CMD % plugin_dest_path
+        git_system(cmd, plugin_bar)
+    else:
+        # Try to remove plugin_dest_path
+        try:
+            shutil.rmtree(plugin_dest_path)
+        except OSError:
+            pass
+        # Git clone on some plugins with subgit
+        cmd = GIT_CLONE_CMD % (branch_name, git_path, plugin_dest_path)
+        git_system(cmd, plugin_bar)
+
+
+def download_extract_replace(
+        plugin_name, github_url, branch_name, temp_dir, source_dir):
+    zip_path = GITHUB_ZIP % (github_url, branch_name)
     temp_zip_path = path.join(temp_dir, plugin_name)
 
     # Download and extract file in temp dir
@@ -66,8 +70,8 @@ def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
         temp_dir,
         path.join(
             temp_dir,
-            '%s-master' %
-            plugin_name))
+            '%s-%s' %
+            (plugin_name, branch_name)))
 
     # Remove the current plugin and replace it with the extracted
     plugin_dest_path = path.join(source_dir, plugin_name)
@@ -79,17 +83,24 @@ def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
 
     shutil.move(plugin_temp_path, plugin_dest_path)
 
-    print 'Updated %s' % plugin_name
+    print 'Updated %s-%s' % (plugin_name, branch_name)
 
 
 if __name__ == '__main__':
     temp_directory = tempfile.mkdtemp()
 
     try:
-        for line in PLUGINS.splitlines():
-            name, github_url = line.split(' ')
-            zip_path = GITHUB_ZIP % github_url
-            download_extract_replace(name, zip_path,
-                                     temp_directory, SOURCE_DIR)
+        for line in file(CONFIG_FILE):
+            line = line.strip()
+            if line == '' or line.startswith('#'):
+                continue
+            download_type, name, github_url, branch_name = line.split()
+            if download_type == 'ZIP':
+                download_extract_replace(name, github_url, branch_name,
+                                         temp_directory, SOURCE_DIR)
+            elif download_type == 'GIT':
+                download_git_clone(name, github_url, branch_name, SOURCE_DIR)
+            else:
+                raise KeyError(download_type)
     finally:
         shutil.rmtree(temp_directory)
