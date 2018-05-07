@@ -203,7 +203,7 @@ accelerate your python developing by great extent.
 
 For more commands about code folding/unfolding, see [Cheat Sheets](cheat-sheets/builtin.md#code_folding).
 
-If your vim doesn't have python and python3 support, you may need run [recompile_vim.sh](recompile_vim.sh) to recompile vim with full python support.
+If your vim doesn't have python and python3 support, you may need to run [recompile_vim.sh](recompile_vim.sh) to recompile vim with full python support.
 (Attention: only test on Ubuntu 16.04)
 
 <a name="cheat_sheets"></a>

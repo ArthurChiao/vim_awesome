@@ -1,11 +1,15 @@
-Maintainer:
+Author:
 
 * Kirill Klenov <horneds@gmail.com>
 
+Maintainers:
+
+* Felipe M. Vieira (https://github.com/fmv1992)
 
 Contributors:
 
 * Alvin Francis (http://github.com/alvinfrancis);
+* Amir Eldor (https://github.com/amireldor)
 * Andriy Kohut (https://github.com/andriykohut)
 * Anler Hp (http://github.com/ikame);
 * Anton Parkhomenko (http://github.com/chuwy);
@@ -14,13 +18,16 @@ Contributors:
 * Boris Filippov (http://github.com/frenzykryger);
 * Brad Mease (http://github.com/bmease)
 * Brendan Maguire (https://github.com/brendanmaguire)
+* Bryce Guinta (https://github.com/brycepg)
 * Daniel Hahler (http://github.com/blueyed)
 * David Vogt (http://github.com/winged);
 * Denis Kasak (http://github.com/dkasak);
+* Diego Rabatone Oliveira (https://github.com/diraol)
 * Dimitrios Semitsoglou-Tsiapos (https://github.com/dset0x);
 * Dirk Wallenstein (http://github.com/dirkwallenstein);
 * Florent Xicluna (http://github.com/florentx);
 * Fredrik Henrysson (http://github.com/fhenrysson);
+* Grzegorz Janik (http://github.com/glujan);
 * Igor Guerrero (http://github.com/igorgue);
 * Jacob Niehus (https://github.com/wilywampa)
 * Jason Harvey (http://github.com/alienth)
@@ -31,6 +38,7 @@ Contributors:
 * Lawrence Akka (https://github.com/lawrenceakka);
 * Lowe Thiderman (http://github.com/thiderman);
 * Martin Brochhaus (http://github.com/mbrochh);
+* Matt Dodge (https://github.com/mattdodge);
 * Matthew Moses (http://github.com/mlmoses);
 * Maxim (https://github.com/mpyatishev);
 * Mel Boyce (http://github.com/syngin);
@@ -40,7 +48,7 @@ Contributors:
 * Paweł Korzeniewski (https://github.com/korzeniewskipl);
 * Pedro Algarvio (http://github.com/s0undt3ch);
 * Phillip Cloud (http://github.com/cpcloud);
-* Piet Delport (http://github.com/pjdelport);
+* Pi Delport (http://github.com/pjdelport);
 * Robert David Grant (http://github.com/bgrant);
 * Robin Schneider (https://github.com/ypid);
 * Ronald Andreu Kaiser (http://github.com/cathoderay);;
@@ -60,3 +68,4 @@ Contributors:
 * nixon (https://github.com/nixon);
 * sphaugh (https://github.com/sphaugh);
 * tramchamploo (https://github.com/tramchamploo);
+* Brad Belyeu (https://github.com/bbelyeu);

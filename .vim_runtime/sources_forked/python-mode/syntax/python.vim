@@ -62,7 +62,6 @@ call pymode#default('g:pymode_syntax_slow_sync', 1)
 
 " }}}
 
-
 " For version 5.x: Clear all syntax items
 if version < 600
     syntax clear
@@ -118,13 +117,12 @@ endif
     if g:pymode_syntax_highlight_stars_operator
         syn match pythonExtraOperator "\%(\*\|\*\*\)"
     endif
-    
+
     if g:pymode_syntax_highlight_self
         syn keyword pythonSelf self cls
     endif
 
 " }}}
-
 
 " Decorators {{{
 " ==============
@@ -135,7 +133,6 @@ endif
 
 " }}}
 
-
 " Comments {{{
 " ============
 
@@ -145,7 +142,6 @@ endif
     syn keyword pythonTodo      TODO FIXME XXX contained
 
 " }}}
-
 
 " Errors {{{
 " ==========
@@ -166,7 +162,6 @@ endif
     endif
 
 " }}}
-
 
 " Strings {{{
 " ===========
@@ -250,16 +245,16 @@ endif
 " Numbers {{{
 " ===========
 
-    syn match   pythonHexError  "\<0[xX]\x*[g-zG-Z]\x*[lL]\=\>" display
-    syn match   pythonHexNumber "\<0[xX]\x\+[lL]\=\>" display
-    syn match   pythonOctNumber "\<0[oO]\o\+[lL]\=\>" display
-    syn match   pythonBinNumber "\<0[bB][01]\+[lL]\=\>" display
-    syn match   pythonNumber    "\<\d\+[lLjJ]\=\>" display
-    syn match   pythonFloat "\.\d\+\([eE][+-]\=\d\+\)\=[jJ]\=\>" display
-    syn match   pythonFloat "\<\d\+[eE][+-]\=\d\+[jJ]\=\>" display
-    syn match   pythonFloat "\<\d\+\.\d*\([eE][+-]\=\d\+\)\=[jJ]\=" display
-    syn match   pythonOctError  "\<0[oO]\=\o*[8-9]\d*[lL]\=\>" display
-    syn match   pythonBinError  "\<0[bB][01]*[2-9]\d*[lL]\=\>" display
+    syn match   pythonHexError  "\<0[xX][0-9a-fA-F_]*[g-zG-Z][0-9a-fA-F_]*[lL]\=\>" display
+    syn match   pythonHexNumber "\<0[xX][0-9a-fA-F_]*[0-9a-fA-F][0-9a-fA-F_]*[lL]\=\>" display
+    syn match   pythonOctNumber "\<0[oO][0-7_]*[0-7][0-7_]*[lL]\=\>" display
+    syn match   pythonBinNumber "\<0[bB][01_]*[01][01_]*[lL]\=\>" display
+    syn match   pythonNumber    "\<[0-9][0-9_]*[lLjJ]\=\>" display
+    syn match   pythonFloat "\.[0-9_]*[0-9][0-9_]*\([eE][+-]\=[0-9_]*[0-9][0-9_]*\)\=[jJ]\=\>" display
+    syn match   pythonFloat "\<[0-9][0-9_]*[eE][+-]\=[0-9_]\+[jJ]\=\>" display
+    syn match   pythonFloat "\<[0-9][0-9_]*\.[0-9_]*\([eE][+-]\=[0-9_]*[0-9][0-9_]*\)\=[jJ]\=" display
+    syn match   pythonOctError  "\<0[oO]\=[0-7_]*[8-9][0-9_]*[lL]\=\>" display
+    syn match   pythonBinError  "\<0[bB][01_]*[2-9][0-9_]*[lL]\=\>" display
 
 " }}}
 
@@ -271,8 +266,8 @@ endif
         syn keyword pythonBuiltinObj True False Ellipsis None NotImplemented
         syn keyword pythonBuiltinObj __debug__ __doc__ __file__ __name__ __package__
     endif
-    
-    if g:pymode_syntax_builtin_types    
+
+    if g:pymode_syntax_builtin_types
         syn keyword pythonBuiltinType type object
         syn keyword pythonBuiltinType str basestring unicode buffer bytearray bytes chr unichr
         syn keyword pythonBuiltinType dict int long bool float complex set frozenset list tuple
@@ -320,7 +315,6 @@ endif
     endif
 
 " }}}
-
 
 if g:pymode_syntax_slow_sync
     syn sync minlines=2000

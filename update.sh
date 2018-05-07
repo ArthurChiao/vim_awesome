@@ -30,6 +30,7 @@ fi
 # fi
 
 # update
+git checkout .
 git checkout master
 git pull --rebase
 
