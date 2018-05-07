@@ -3,24 +3,24 @@
 
 # backup directory
 # with two leading dots to distinguish it from vim configuration files
-backup_dir=~/..vimback
+backup_dir=$HOME/..vimback
 
 # step.1. remove configurations
-echo "[1] removing current configurations ..."
-rm ~/.vim* -rf
+echo -e "\033[36m[1] removing current configurations ...\033[0m"
+rm -rf $HOME/.vim* 
 
-echo "successful"
-echo ""
+echo -e "\033[34mremove successful\033[0m"
+echo -e ""
 
 # step.2. restore old configurations
-echo "[2] restore old configurations ..."
+echo -e "\033[36m[2] restore old configurations ...\033[0m"
 
 if [ ! -d $backup_dir ]; then
-    echo "$backup_dir not exist, exit"
+    echo -e "$backup_dir not exist, exit"
     exit
 fi
 
-cp $backup_dir/.vim* ~ -rf
-echo "successful"
+cp -rf $backup_dir/.vim* $HOME
+echo -e "\033[34mrestore successful\033[0m"
 
-echo "uninstall vim_awesome successful"
+echo -e "\033[34muninstall vim_awesome successful\033[0m"

@@ -1,1 +1,3 @@
 **/.ropeproject
+.vim_runtime/temp_dirs/*
+.vim_runtime/sources_non_forked/*
