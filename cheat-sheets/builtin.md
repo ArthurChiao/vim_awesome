@@ -22,7 +22,7 @@ built-in commands
 
 
 <a id="save_quit"></a>
-##[[↑]](#top) Open, Save, Quit/Close files
+## [[↑]](#top) Open, Save, Quit/Close files
 
 1. Basic
 
@@ -60,7 +60,7 @@ built-in commands
 
 <a id="code_folding"></a>
 
-##[[↑]](#top) Code Folding
+## [[↑]](#top) Code Folding
 
 Large source files, e.g. thousands of lines, are inconvenient for reading.
 Code folding can be a great help on this point.
@@ -78,6 +78,8 @@ leaving only an outline of the major parts visible. This is what folding does.
     | `zf` | create folding on visual selected block |
     | `za` | toggle to unfold/fold current folding |
     | `zc` | close a fold at the cursor |
+    | `zr` | open all first-level folds in file |
+    | `zm` | closes all first-level folds in file |
     | `zR` | open all folds in file |
     | `zM` | closes all open folds in file |
 
@@ -127,7 +129,7 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 <a id="insert_add"></a>
 
-##[[↑]](#top) Insert/Add
+## [[↑]](#top) Insert/Add
 
 1. Basic
 
@@ -200,7 +202,7 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 
 <a id="substitute_replace"></a>
-##[[↑]](#top) Substitute/Replace
+## [[↑]](#top) Substitute/Replace
 
 1. Basic
 
@@ -238,7 +240,7 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 <a id="search_find"></a>
 
-##[[↑]](#top) Search/Find
+## [[↑]](#top) Search/Find
 1. Special Characters
 
     | Command  |  Action |
@@ -272,7 +274,7 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 <a id="cursor_moving"></a>
 
-##[[↑]](#top) Cursor Moving
+## [[↑]](#top) Cursor Moving
 
 1. Basic
 
@@ -347,7 +349,7 @@ leaving only an outline of the major parts visible. This is what folding does.
     Amazing! A whole new world emerges!
 
 <a id="screen_scroll"></a>
-##[[↑]](#top) Screen Scroll
+## [[↑]](#top) Screen Scroll
 
 1. Basic
 
@@ -367,7 +369,7 @@ leaving only an outline of the major parts visible. This is what folding does.
     keeping the cursor still in its position.
 
 <a id="delete"></a>
-##[[↑]](#top) Delete
+## [[↑]](#top) Delete
 
 1. Basic
 
@@ -402,7 +404,7 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 <a id="copy_paste"></a>
 
-##[[↑]](#top) Copy/Paste
+## [[↑]](#top) Copy/Paste
 
 1. Basic
 
@@ -425,7 +427,7 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 <a id="Undo_Redo"></a>
 
-##[[↑]](#top) Undo/Redo
+## [[↑]](#top) Undo/Redo
 
 1. Basic
 
@@ -437,7 +439,7 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 
 <a id="buffer"></a>
-##[[↑]](#top) Vim Buffer
+## [[↑]](#top) Vim Buffer
 
     `:ls` - list all the files in vim buffer, one file each buffer. This is
     especially usuful in that you can see the files edited in other process by
@@ -454,7 +456,7 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 
 <a id=id="explore_window"></a>
-##[[↑]](#top) Explore Window
+## [[↑]](#top) Explore Window
 
 1. Advanced
 
@@ -470,14 +472,14 @@ leaving only an outline of the major parts visible. This is what folding does.
 
 
 <a id="session"></a>
-##[[↑]](#top) Vim Session
+## [[↑]](#top) Vim Session
 
     * `:mksession ~/.mysession.vim` - save current vim session (all status)
     * `:mksession! ~/.mysession.vim` - force to save
     * `vim -S ~/.mysession.vim` - open saved session, which contains the status the last time vim exited
 
 <a id="quickfix"></a>
-##[[↑]](#top) Quickfix
+## [[↑]](#top) Quickfix
 
 1. Basic
 
@@ -537,7 +539,7 @@ leaving only an outline of the major parts visible. This is what folding does.
     ```
 
 <a id="split_window"></a>
-##[[↑]](#top) Split Window
+## [[↑]](#top) Split Window
 
 1. Basic
 
@@ -597,7 +599,7 @@ leaving only an outline of the major parts visible. This is what folding does.
     | `:tabonly` | close all other tabs |
 
 <a id="char_related"></a>
-##[[↑]](#top) Character Related
+## [[↑]](#top) Character Related
 
 1. Basic
 
@@ -610,7 +612,7 @@ leaving only an outline of the major parts visible. This is what folding does.
     | gf | open the file under the current cursor |
 
 <a dir="misc"></a>
-##[[↑]](#top) Misc
+## [[↑]](#top) Misc
 
 1. Basic
 
