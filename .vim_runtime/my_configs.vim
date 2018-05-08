@@ -45,3 +45,15 @@ func SetTitle()
 	endif
 endfunc 
 autocmd BufNewFile * normal G
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" set auto lint
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_rope = 1
+" use python as default setting 
+let g:pymode_python = 'python'
