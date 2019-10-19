@@ -295,19 +295,6 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
-" Insert whitespace between English words/digits and Chinese characters
-" Better for human reading
-func! InsertWhiteSpaceGlobal()
-  exe "normal mz"
-  %s/\([0-9a-zA-Z]\)\([\u4e00-\u9fff]\)/\1 \2/g
-  %s/\([\u4e00-\u9fff]\)\([0-9a-zA-Z]\)/\1 \2/g
-  %s/\([0-9a-zA-Z]\)\(`\)\([\u4e00-\u9fff]\)/\1\2 \3/g
-  %s/\([\u4e00-\u9fff]\)\(`\)\([0-9a-zA-Z]\)/\1 \2\3/g
-  write
-  exe "normal `z"
-endfunc
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching and cope displaying
 "    requires ack.vim - it's much better than vimgrep/grep
