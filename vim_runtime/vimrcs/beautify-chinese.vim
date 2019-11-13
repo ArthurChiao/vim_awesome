@@ -15,9 +15,13 @@ if version >= 500
     " Digit: one digit, e.g. "6"
     "=========================================================================
 
-
     " beautify Chinese documents
     func! BeautifyChineseRun()
+        " ignorecase setting will lead to 100% CPU for some time,
+        " so we temprarily disable it before executing
+        let prev_ignorecase=&ignorecase
+        set noignorecase " case sentitive
+
         exe "normal mz"
 
         " add white space between a CNChar and an ENChar/Digit, or vise verses
@@ -41,6 +45,10 @@ if version >= 500
         " save changes
         write
         exe "normal `z"
+
+        " restore ignorecase setting
+        let &ignorecase=prev_ignorecase
+        unlet prev_ignorecase
     endfunc
 
 
@@ -48,6 +56,11 @@ if version >= 500
     " Better for human reading
     " Note: this is a simplified version of BeautifyChineseRun()
     func! InsertWhiteSpaceGlobal()
+        " ignorecase setting will lead to 100% CPU for some time,
+        " so we temprarily disable it before executing
+        let prev_ignorecase=&ignorecase
+        set noignorecase " case sentitive
+
         exe "normal mz"
         %s/\([0-9a-zA-Z]\)\([\u4e00-\u9fff]\)/\1 \2/g
         %s/\([\u4e00-\u9fff]\)\([0-9a-zA-Z]\)/\1 \2/g
@@ -55,6 +68,10 @@ if version >= 500
         %s/\([\u4e00-\u9fff]\)\(`\)\([0-9a-zA-Z]\)/\1 \2\3/g
         write
         exe "normal `z"
+
+        " restore ignorecase setting
+        let &ignorecase=prev_ignorecase
+        unlet prev_ignorecase
     endfunc
 
 
