@@ -53,8 +53,11 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" allow to use mouse clicking
-set mouse=a
+" allow to use mouse clicking for VIM
+" version >= 500 distinguishes VIM from VI
+if version >= 500
+    set mouse=a
+endif
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -126,7 +129,9 @@ set t_vb=
 set tm=500
 
 " No extra margin to the left
-set foldcolumn=0
+if version >= 500
+    set foldcolumn=0
+endif
 
 " Show line number
 set nu
