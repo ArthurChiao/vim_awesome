@@ -127,7 +127,7 @@ set mat=2
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+set timeoutlen=500
 
 " No extra margin to the left
 if version >= 500
@@ -138,8 +138,8 @@ endif
 set nu
 
 "set column width to be 80-character
-set lines=40 columns=80
-set textwidth=78
+" set lines=40 columns=80
+set textwidth=80
 set formatoptions+=Mm
 set colorcolumn=80
 
@@ -197,7 +197,6 @@ set tabstop=4
 
 " Linebreak on 500 characters
 set lbr
-set tw=500
 
 set ai "Auto indent
 set si "Smart indent
