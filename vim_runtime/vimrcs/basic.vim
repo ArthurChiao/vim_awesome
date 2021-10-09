@@ -138,8 +138,6 @@ endif
 set nu
 
 "set column width to be 80-character
-" set lines=40 columns=80
-set textwidth=80
 set formatoptions+=Mm
 set colorcolumn=80
 
@@ -399,3 +397,18 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc utils collected by ArthurChiao
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Squash consecutive blank lines into one line
+" https://vim.fandom.com/wiki/Remove_unwanted_empty_lines
+"
+" Could also be achieved with `%!cat -s` if you have cat installed
+func! SquashBlankLines()
+  exe "normal mz"
+  %s/\n\{3,}/\r\r/e
+  exe "normal `z"
+endfunc
+command! SquashBlankLines :call SquashBlankLines()
