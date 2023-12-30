@@ -59,13 +59,11 @@ Auto scripts for install/uninstall, but I only tested under limited platforms:
 
 ```shell
 $ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
-
 $ cd vim_awesome
-
 $ ./install.sh
 ```
 
-## Custome Install
+## Custom Install
 
 Tested on **Ubuntu/Redhat/CentOS/OpenSUSE/Windows/** platforms.
 
@@ -83,7 +81,7 @@ $ git clone --depth 1 https://github.com/ArthurChiao/vim_awesome.git
 $ cd vim_awesome && cp .vim_runtime ~ -rf
 
 # install
-$ sh ~/.vim_runtime/install_awesome_vimrc.sh
+$ ./install.sh
 ```
 
 ## Update
